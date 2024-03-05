@@ -6,8 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hnog"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer")]
 script = ExtResource("1_clcy5")
+jumpTimer = NodePath("JumpTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -21,3 +22,8 @@ zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 script = ExtResource("3_3htha")
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 0.35
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
