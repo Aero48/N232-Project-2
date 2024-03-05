@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg47xcya4kbjl"]
+
+[ext_resource type="Script" path="res://GameController.gd" id="1_2v3on"]
+[ext_resource type="Script" path="res://Score.gd" id="2_fvgpf"]
+
+[node name="GameController" type="Node2D"]
+script = ExtResource("1_2v3on")
+level = 1
+
+[node name="Score" type="Label" parent="."]
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 45.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 30
+text = "0"
+script = ExtResource("2_fvgpf")
