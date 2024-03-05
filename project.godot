@@ -11,6 +11,10 @@ config_version=5
 [application]
 
 config/name="Project-2"
-run/main_scene="res://level1.tscn"
+run/main_scene="res://levels/level_1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

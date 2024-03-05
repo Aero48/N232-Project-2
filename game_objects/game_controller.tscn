@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://cg47xcya4kbjl"]
 
-[ext_resource type="Script" path="res://GameController.gd" id="1_2v3on"]
-[ext_resource type="Script" path="res://Score.gd" id="2_fvgpf"]
+[ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_2v3on"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="2_fvgpf"]
 
-[node name="GameController" type="Node2D"]
+[node name="GameController" type="CanvasLayer"]
 script = ExtResource("1_2v3on")
 level = 1
 

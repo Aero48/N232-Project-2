@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c381uru21milu"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_clcy5"]
+[ext_resource type="Texture2D" uid="uid://cicdujygmnrya" path="res://assets/character_0001.png" id="2_l2p7a"]
+[ext_resource type="Script" path="res://scripts/follow_cam.gd" id="3_3htha"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hnog"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_clcy5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_l2p7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8hnog")
+
+[node name="FollowCam" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+script = ExtResource("3_3htha")

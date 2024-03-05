@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 @export var level: int
 
@@ -17,8 +17,8 @@ func _process(delta):
 	pass
 	
 func change_level():
-	if ResourceLoader.exists("res://Labs/6/level"+str(level+1)+".tscn"):
-		get_tree().change_scene_to_file("res://Labs/6/level"+str(level+1)+".tscn")
+	if ResourceLoader.exists("res://levels/level_"+str(level+1)+".tscn"):
+		get_tree().change_scene_to_file("res://levels/level_"+str(level+1)+".tscn")
 	
 	
 func coin_collected():

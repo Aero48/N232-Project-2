@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://brkv142lia3fn"]
+
+[ext_resource type="TileSet" uid="uid://b1657hdun3w2d" path="res://assets/GameTiles.tres" id="1_8kxkk"]
+[ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="3_ahtkj"]
+[ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/game_controller.tscn" id="4_douvh"]
+[ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="6_ugilt"]
+
+[node name="Platformer" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_8kxkk")
+rendering_quadrant_size = 18
+format = 2
+layer_0/tile_data = PackedInt32Array(2162688, 131073, 1, 2162689, 131073, 1, 2162690, 131073, 1, 2162691, 131073, 1, 2162692, 131073, 1, 2162693, 131073, 1, 2228229, 131073, 2, 2228228, 131073, 2, 2228227, 131073, 2, 2228226, 131073, 2, 2228225, 131073, 2, 2228224, 131073, 2, 2293760, 131073, 2, 2293761, 131073, 2, 2293762, 131073, 2, 2293763, 131073, 2, 2293764, 131073, 2, 2293765, 131073, 2, 2228230, 196609, 2, 2293766, 196609, 2, 2162694, 196609, 1, 1966089, 1, 0, 1900559, 1, 0, 1900565, 1, 0, 2293781, 1, 0, 1376283, 393217, 4, 1376282, 262145, 4, 1376284, 458753, 4, 1441820, 458753, 5, 1441818, 262145, 5, 1441819, 327681, 5, 1507355, 327681, 6, 1507354, 262145, 6, 1507356, 458753, 6, 1572890, 65537, 0, 1572891, 131073, 0, 1572892, 196609, 0, 2162713, 1, 0, 1966109, 65537, 0, 1966110, 196609, 0, 1966113, 65537, 0, 1966114, 196609, 0, 1769501, 1, 3, 1703965, 1, 2, 1638429, 1, 2, 1572893, 1, 1, 1703966, 1, 0, 1507368, 1, 0, 63, 327681, 6)
+
+[node name="Coin" parent="." instance=ExtResource("6_ugilt")]
+position = Vector2(170, 496)
+
+[node name="Coin2" parent="." instance=ExtResource("6_ugilt")]
+position = Vector2(384, 578)
+
+[node name="Coin3" parent="." instance=ExtResource("6_ugilt")]
+position = Vector2(352, 485)
+
+[node name="Coin4" parent="." instance=ExtResource("6_ugilt")]
+position = Vector2(492, 363)
+
+[node name="Coin5" parent="." instance=ExtResource("6_ugilt")]
+position = Vector2(900, 439)
+
+[node name="Player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_ahtkj")]
+position = Vector2(32, 571)
+tilemap = NodePath("../TileMap")
+
+[node name="GameController" parent="." instance=ExtResource("4_douvh")]
+level = 3

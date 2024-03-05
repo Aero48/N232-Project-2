@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var tilemap: TileMap
+
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
