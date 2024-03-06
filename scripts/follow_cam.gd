@@ -11,8 +11,6 @@ func _ready():
 	limit_right = worldSizeInPixels.x
 	limit_bottom = worldSizeInPixels.y
 	
-	print(limit_bottom)
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
