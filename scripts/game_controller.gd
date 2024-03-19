@@ -23,7 +23,7 @@ func change_level():
 	
 func coin_collected():
 	score += 1
-	get_node("/root/Platformer/GameController/Score").text = str(score)
+	get_node("/root/Platformer/GameController/Score").text = str(score)+"/5"
 	if score >= 5:
 		change_level()
 	

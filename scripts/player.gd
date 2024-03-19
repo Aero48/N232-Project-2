@@ -80,7 +80,19 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, AIR_ACCEL)
 	move_and_slide()
 
+	if is_on_floor() and velocity.x != 0:
+		sprite.animation = "walk"
+	elif is_on_floor() and velocity.x == 0:
+		sprite.animation = "idle"
+	elif !is_on_floor() and velocity.y < 0:
+		sprite.animation = "jump"
+	else:
+		sprite.animation = "fall"
 
 func _on_jump_timer_timeout():
 	jumpTimeout = true
 	pass
+	
+func _ready():
+	sprite.play()
+	sprite.speed_scale = 2
