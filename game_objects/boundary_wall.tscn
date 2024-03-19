@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2dmea1bub1vy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mupec"]
+
+[node name="BoundaryWall" type="StaticBody2D"]
+position = Vector2(-28, 316)
+scale = Vector2(2.81097, 34.6781)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mupec")

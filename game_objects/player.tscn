@@ -72,6 +72,6 @@ wait_time = 0.35
 position = Vector2(0, -2.08)
 sprite_frames = SubResource("SpriteFrames_ph7hl")
 animation = &"jump"
-frame_progress = 0.293914
+frame_progress = 0.148685
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

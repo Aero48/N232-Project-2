@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1ng2ckcwr8im"]
+[gd_scene load_steps=7 format=3 uid="uid://c1ng2ckcwr8im"]
 
 [ext_resource type="TileSet" uid="uid://b1657hdun3w2d" path="res://assets/GameTiles.tres" id="1_yq2l6"]
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_t232b"]
 [ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/game_controller.tscn" id="4_sc38d"]
+[ext_resource type="PackedScene" uid="uid://0ry63uwcp8d" path="res://game_objects/pit.tscn" id="5_0hyu6"]
 [ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="5_syhjj"]
+[ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="6_373j6"]
 
 [node name="Platformer" type="Node2D"]
 
@@ -33,3 +35,8 @@ position = Vector2(782, 356)
 
 [node name="Coin5" parent="." instance=ExtResource("5_syhjj")]
 position = Vector2(1043, 529)
+
+[node name="Pit" parent="." instance=ExtResource("5_0hyu6")]
+position = Vector2(487, 699)
+
+[node name="BoundaryWall" parent="." instance=ExtResource("6_373j6")]

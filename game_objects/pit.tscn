@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://0ry63uwcp8d"]
+
+[ext_resource type="Script" path="res://scripts/pit.gd" id="1_swx67"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6quic"]
+
+[node name="Pit" type="Area2D"]
+position = Vector2(-1, 1)
+scale = Vector2(23.64, 1)
+script = ExtResource("1_swx67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6quic")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

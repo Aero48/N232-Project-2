@@ -80,6 +80,7 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, AIR_ACCEL)
 	move_and_slide()
 
+	# Play certain animations depending on the scenario
 	if is_on_floor() and velocity.x != 0:
 		sprite.animation = "walk"
 	elif is_on_floor() and velocity.x == 0:
