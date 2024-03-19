@@ -6,13 +6,15 @@ extends CharacterBody2D
 #Connects to tilemap for camera boundaries
 @export var tilemap: TileMap
 
+@export var sprite: AnimatedSprite2D
+
 #Player horizontal acceleration while in air
-const AIR_ACCEL = 40.0
+const AIR_ACCEL = 20.0
 #Player horizontal acceleration while on the ground
-const GROUND_ACCEL = 40.0
-const GROUND_DECEL = 60.0
+const GROUND_ACCEL = 30.0
+const GROUND_DECEL = 40.0
 #Player max horizontal speed
-const SPEED = 250.0
+const SPEED = 150.0
 #Initial vertical velocity when player jumps
 const JUMP_VELOCITY = -300.0
 #Maximum vertical speed when falling
@@ -58,12 +60,14 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction>0:
+		sprite.flip_h = 1
 		if velocity.x <= SPEED:
 			if is_on_floor():
 				velocity.x += direction * GROUND_ACCEL
 			else:
 				velocity.x += direction * AIR_ACCEL
 	elif direction<0:
+		sprite.flip_h = 0
 		if velocity.x >= -SPEED:
 			if is_on_floor():
 				velocity.x += direction * GROUND_ACCEL
