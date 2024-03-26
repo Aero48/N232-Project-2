@@ -12,6 +12,7 @@ extends CharacterBody2D
 
 @export var slideSound: AudioStreamPlayer
 @export var squashSound: AudioStreamPlayer
+@export var hitSound: AudioStreamPlayer
 
 #Player horizontal acceleration while in air
 const AIR_ACCEL = 20.0
@@ -114,6 +115,9 @@ func _physics_process(delta):
 	else:
 		slideSound.stop()
 		isSliding = false
+		
+	if is_on_ceiling():
+		hitSound.play()
 
 func _on_jump_timer_timeout():
 	jumpTimeout = true

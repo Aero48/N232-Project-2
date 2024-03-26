@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c381uru21milu"]
+[gd_scene load_steps=11 format=3 uid="uid://c381uru21milu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_clcy5"]
 [ext_resource type="Texture2D" uid="uid://cicdujygmnrya" path="res://assets/character_0001.png" id="2_l2p7a"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dno54v7men88t" path="res://assets/sounds/jump.ogg" id="5_5a1hu"]
 [ext_resource type="AudioStream" uid="uid://magy6uw86art" path="res://assets/sounds/slide.ogg" id="6_lx5fb"]
 [ext_resource type="AudioStream" uid="uid://b2lyru0w7mewm" path="res://assets/sounds/squash.ogg" id="7_vdods"]
+[ext_resource type="AudioStream" uid="uid://detxj55rn0wxr" path="res://assets/sounds/hit.ogg" id="8_xpycq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hnog"]
 
@@ -48,13 +49,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite", "jumpSound", "slideSound", "squashSound") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite", "jumpSound", "slideSound", "squashSound", "hitSound") groups=["player"]]
 script = ExtResource("1_clcy5")
 jumpTimer = NodePath("JumpTimer")
 sprite = NodePath("AnimatedSprite2D")
 jumpSound = NodePath("JumpSound")
 slideSound = NodePath("SlideSound")
 squashSound = NodePath("SquashSound")
+hitSound = NodePath("HeadHit")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -91,5 +93,8 @@ stream = ExtResource("6_lx5fb")
 
 [node name="SquashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_vdods")
+
+[node name="HeadHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_xpycq")
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
