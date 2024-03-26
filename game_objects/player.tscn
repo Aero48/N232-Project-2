@@ -47,7 +47,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite", "jumpSound", "slideSound")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite", "jumpSound", "slideSound") groups=["player"]]
 script = ExtResource("1_clcy5")
 jumpTimer = NodePath("JumpTimer")
 sprite = NodePath("AnimatedSprite2D")

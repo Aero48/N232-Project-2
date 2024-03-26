@@ -15,5 +15,6 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	get_node("/root/Platformer/GameController").coin_collected()
-	queue_free()
+	if body.is_in_group("player"):
+		get_node("/root/Platformer/GameController").coin_collected()
+		queue_free()

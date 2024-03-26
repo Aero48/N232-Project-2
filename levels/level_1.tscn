@@ -68,4 +68,4 @@ texture = ExtResource("9_tvfdg")
 centered = false
 
 [node name="Enemy" parent="." instance=ExtResource("10_qeyps")]
-position = Vector2(231, 364)
+position = Vector2(632, 342)
