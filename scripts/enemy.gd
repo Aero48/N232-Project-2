@@ -42,9 +42,10 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and body.is_visible():
 		if body.velocity.y>0:
 			queue_free()
 			body.enemySquash() 
 		else:
-			get_tree().reload_current_scene()
+			body.hide()
+			get_node("/root/Platformer/GameController").player_death()

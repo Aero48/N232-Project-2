@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqtr71ud1n7ca"]
+
+[ext_resource type="Texture2D" uid="uid://ddn8ksx0byvbe" path="res://assets/spring_2.png" id="1_fwrpw"]
+[ext_resource type="Script" path="res://scripts/spring.gd" id="1_oa2t7"]
+[ext_resource type="Texture2D" uid="uid://b8cxe3k5layim" path="res://assets/spring_1.png" id="2_p3ftb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tccu"]
+size = Vector2(18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_quj16"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p3ftb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_fwrpw")
+}],
+"loop": false,
+"name": &"boing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fwrpw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Spring" type="Area2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_oa2t7")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4tccu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_quj16")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

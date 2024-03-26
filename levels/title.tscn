@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://jiyvw37sbhkt"]
+
+[ext_resource type="Script" path="res://scripts/title.gd" id="1_iskvm"]
+[ext_resource type="PackedScene" uid="uid://dxobti50tir4t" path="res://game_objects/grass_bg.tscn" id="1_p4si0"]
+[ext_resource type="Texture2D" uid="uid://dnmd8ugbljxth" path="res://assets/title_bg.png" id="3_1jqo8"]
+[ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="4_7adol"]
+[ext_resource type="AudioStream" uid="uid://bl6rr6skldwx" path="res://assets/sounds/level_win.ogg" id="5_lyc0l"]
+
+[node name="Title" type="Node2D" node_paths=PackedStringArray("startTimer", "startSound")]
+script = ExtResource("1_iskvm")
+startTimer = NodePath("StartTimer")
+startSound = NodePath("AudioStreamPlayer")
+
+[node name="GrassBg" parent="." instance=ExtResource("1_p4si0")]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(480, 198)
+scale = Vector2(2, 2)
+texture = ExtResource("3_1jqo8")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -85.0
+offset_top = -15.5
+offset_right = 121.0
+offset_bottom = 20.5
+theme_override_fonts/font = ExtResource("4_7adol")
+theme_override_font_sizes/font_size = 34
+text = "NOT MARIO"
+
+[node name="Start" type="Button" parent="."]
+offset_left = 419.0
+offset_top = 298.0
+offset_right = 532.0
+offset_bottom = 353.0
+theme_override_fonts/font = ExtResource("4_7adol")
+theme_override_font_sizes/font_size = 28
+text = "Start"
+
+[node name="StartTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_lyc0l")
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

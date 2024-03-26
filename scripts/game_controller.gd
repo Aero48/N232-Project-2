@@ -2,30 +2,43 @@ extends CanvasLayer
 
 @export var level: int
 @export var coinSound: AudioStreamPlayer
+@export var deathSound: AudioStreamPlayer
+@export var levelCompleteSound: AudioStreamPlayer
+
+@export var deathTimer: Timer
+@export var nextLevelTimer: Timer
 
 var score = 0
 
 var scoreLabel 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	#scoreLabel = get_tree().get_root().find_node("Score")
-	pass # Replace with function body.
+var levelComplete = false
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 	
 func change_level():
 	if ResourceLoader.exists("res://levels/level_"+str(level+1)+".tscn"):
 		get_tree().change_scene_to_file("res://levels/level_"+str(level+1)+".tscn")
-	
+	else:
+		get_tree().change_scene_to_file("res://levels/title.tscn")
 	
 func coin_collected():
-	coinSound.play()
 	score += 1
 	get_node("/root/Platformer/GameController/Score").text = str(score)+"/5"
 	if score >= 5:
+		get_node("/root/Platformer/Player").inputEnabled = false
+		levelCompleteSound.play()
+		levelComplete = true
+		nextLevelTimer.start()
+		await nextLevelTimer.timeout
 		change_level()
+	else:
+		coinSound.play()
+
+func player_death():
+	if !levelComplete:
+		get_node("/root/Platformer/Player").inputEnabled = false
+		deathSound.play()
+		deathTimer.start()
+		await deathTimer.timeout
+		get_tree().reload_current_scene()
 	

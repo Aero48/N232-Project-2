@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var slideSound: AudioStreamPlayer
 @export var squashSound: AudioStreamPlayer
 @export var hitSound: AudioStreamPlayer
+@export var boingSound: AudioStreamPlayer
 
 #Player horizontal acceleration while in air
 const AIR_ACCEL = 20.0
@@ -23,6 +24,8 @@ const GROUND_DECEL = 30.0
 const SPEED = 150.0
 #Initial vertical velocity when player jumps
 const JUMP_VELOCITY = -300.0
+#Initial vertical velocity when player bounces on spring
+const SPRING_VELOCITY = -600.0
 #Maximum vertical speed when falling
 const MAX_FALL_SPEED = 400
 
@@ -33,6 +36,9 @@ var jumpTimeout = true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+#Determines whether or not a player inputs are enabled
+var inputEnabled = true
 
 # Runs when player stops holding the jump button, or starts moving down
 func early_jump_timeout():
@@ -52,6 +58,13 @@ func jump():
 	jumpTimeout = false
 	#when player jumps, starts a timer that determines the maximum amount of time the player can hold jump for before gravity returns to normal
 	jumpTimer.start()
+	
+func springJump():
+	boingSound.play()
+	velocity.y = SPRING_VELOCITY
+	jumpTimeout = false
+	#when player jumps, starts a timer that determines the maximum amount of time the player can hold jump for before gravity returns to normal
+	jumpTimer.start()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -64,7 +77,7 @@ func _physics_process(delta):
 		early_jump_timeout()
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and inputEnabled:
 		jump()
 		
 	#This sets the gravity to a lower value when player is holding the jump button (only applies if player has actually jumped, and the maximum time hasn't been reached)
@@ -78,14 +91,14 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction>0:
+	if direction>0 and inputEnabled:
 		sprite.flip_h = 1
 		if velocity.x <= SPEED:
 			if is_on_floor():
 				velocity.x += direction * GROUND_ACCEL
 			else:
 				velocity.x += direction * AIR_ACCEL
-	elif direction<0:
+	elif direction<0 and inputEnabled:
 		sprite.flip_h = 0
 		if velocity.x >= -SPEED:
 			if is_on_floor():

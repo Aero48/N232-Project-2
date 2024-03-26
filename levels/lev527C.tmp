@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1ng2ckcwr8im"]
+
+[ext_resource type="PackedScene" uid="uid://bpchbip3scbub" path="res://game_objects/grass_tiles.tscn" id="1_4ax1w"]
+[ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_t232b"]
+[ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/game_controller.tscn" id="4_sc38d"]
+[ext_resource type="PackedScene" uid="uid://0ry63uwcp8d" path="res://game_objects/pit.tscn" id="5_0hyu6"]
+[ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="5_syhjj"]
+[ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="6_373j6"]
+[ext_resource type="PackedScene" uid="uid://dxobti50tir4t" path="res://game_objects/grass_bg.tscn" id="7_6ukvo"]
+[ext_resource type="PackedScene" uid="uid://cmwi7bg15vt7u" path="res://game_objects/enemy.tscn" id="10_qeyps"]
+
+[node name="Platformer" type="Node2D"]
+
+[node name="GrassTiles" parent="." instance=ExtResource("1_4ax1w")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("2_t232b")]
+position = Vector2(42, 437)
+tilemap = NodePath("../GrassTiles")
+
+[node name="GameController" parent="." instance=ExtResource("4_sc38d")]
+
+[node name="Coin" parent="." instance=ExtResource("5_syhjj")]
+position = Vector2(219, 430)
+
+[node name="Coin2" parent="." instance=ExtResource("5_syhjj")]
+position = Vector2(387, 389)
+
+[node name="Coin3" parent="." instance=ExtResource("5_syhjj")]
+position = Vector2(575, 332)
+
+[node name="Coin4" parent="." instance=ExtResource("5_syhjj")]
+position = Vector2(782, 356)
+
+[node name="Coin5" parent="." instance=ExtResource("5_syhjj")]
+position = Vector2(1032, 422)
+
+[node name="Pit" parent="." instance=ExtResource("5_0hyu6")]
+position = Vector2(487, 699)
+scale = Vector2(98.92, 1)
+
+[node name="BoundaryWall" parent="." instance=ExtResource("6_373j6")]
+
+[node name="GrassBg" parent="." instance=ExtResource("7_6ukvo")]
+
+[node name="Enemy" parent="." instance=ExtResource("10_qeyps")]
+position = Vector2(632, 342)
+
+[node name="Enemy2" parent="." instance=ExtResource("10_qeyps")]
+position = Vector2(909, 345)

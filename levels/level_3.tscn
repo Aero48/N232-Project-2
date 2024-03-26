@@ -1,19 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://brkv142lia3fn"]
+[gd_scene load_steps=10 format=3 uid="uid://brkv142lia3fn"]
 
-[ext_resource type="TileSet" uid="uid://b1657hdun3w2d" path="res://assets/GameTiles.tres" id="1_8kxkk"]
+[ext_resource type="TileSet" uid="uid://bfqp6mxmqt3x3" path="res://assets/grass_tileset.tres" id="1_jmdeq"]
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="3_ahtkj"]
 [ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/game_controller.tscn" id="4_douvh"]
 [ext_resource type="PackedScene" uid="uid://0ry63uwcp8d" path="res://game_objects/pit.tscn" id="5_qjwdc"]
 [ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="6_6njww"]
 [ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="6_ugilt"]
+[ext_resource type="PackedScene" uid="uid://cqtr71ud1n7ca" path="res://game_objects/spring.tscn" id="7_lu3kl"]
+[ext_resource type="PackedScene" uid="uid://cmwi7bg15vt7u" path="res://game_objects/enemy.tscn" id="8_deq3u"]
+[ext_resource type="PackedScene" uid="uid://dxobti50tir4t" path="res://game_objects/grass_bg.tscn" id="9_83ikr"]
 
 [node name="Platformer" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("1_8kxkk")
-rendering_quadrant_size = 18
+[node name="Level3Tiles" type="TileMap" parent="."]
+tile_set = ExtResource("1_jmdeq")
 format = 2
-layer_0/tile_data = PackedInt32Array(2162688, 131073, 1, 2162689, 131073, 1, 2162690, 131073, 1, 2162691, 131073, 1, 2162692, 131073, 1, 2162693, 131073, 1, 2228229, 131073, 2, 2228228, 131073, 2, 2228227, 131073, 2, 2228226, 131073, 2, 2228225, 131073, 2, 2228224, 131073, 2, 2293760, 131073, 2, 2293761, 131073, 2, 2293762, 131073, 2, 2293763, 131073, 2, 2293764, 131073, 2, 2293765, 131073, 2, 2228230, 196609, 2, 2293766, 196609, 2, 2162694, 196609, 1, 1966089, 1, 0, 1900559, 1, 0, 1900565, 1, 0, 2293781, 1, 0, 1376283, 393217, 4, 1376282, 262145, 4, 1376284, 458753, 4, 1441820, 458753, 5, 1441818, 262145, 5, 1441819, 327681, 5, 1507355, 327681, 6, 1507354, 262145, 6, 1507356, 458753, 6, 1572890, 65537, 0, 1572891, 131073, 0, 1572892, 196609, 0, 2162713, 1, 0, 1966109, 65537, 0, 1966110, 196609, 0, 1966113, 65537, 0, 1966114, 196609, 0, 1769501, 1, 3, 1703965, 1, 2, 1638429, 1, 2, 1572893, 1, 1, 1703966, 1, 0, 1507368, 1, 0, 63, 327681, 6, 1376291, 1, 0)
+layer_0/tile_data = PackedInt32Array(2162688, 131072, 1, 2162689, 131072, 1, 2162690, 131072, 1, 2162691, 131072, 1, 2162692, 131072, 1, 2162693, 131072, 1, 2162694, 196608, 1, 2228230, 196608, 6, 2293766, 196608, 6, 2228229, 131072, 6, 2228228, 131072, 6, 2228227, 131072, 6, 2228226, 131072, 6, 2228225, 131072, 6, 2228224, 131072, 6, 2293760, 131072, 6, 2293761, 131072, 6, 2293762, 131072, 6, 2293763, 131072, 6, 2293764, 131072, 6, 2293765, 131072, 6, 62, 458752, 2, 2293769, 786432, 2, 2228233, 786432, 2, 2162697, 786432, 2, 2097161, 786432, 2, 2031625, 786432, 2, 1966089, 786432, 2, 1900553, 786432, 0, 1900554, 851968, 0, 1900552, 851968, 0, 1900551, 917504, 0, 1900555, 983040, 0, 1835027, 786432, 0, 1835028, 851968, 0, 1835026, 851968, 0, 1835029, 983040, 0, 1835025, 917504, 0, 1900563, 786432, 1, 1966099, 786432, 1, 2031635, 786432, 1, 2097171, 786432, 1, 2162707, 786432, 1, 2228243, 786432, 1, 2293779, 786432, 1, 2162708, 917504, 0, 2162709, 851968, 0, 2162710, 786432, 0, 2162711, 851968, 0, 2162712, 983040, 0, 2228246, 786432, 1, 2293782, 786432, 1, 1441819, 786432, 0, 1441814, 917504, 0, 1441815, 851968, 0, 1441816, 851968, 0, 1441817, 851968, 0, 1441818, 851968, 0, 1441820, 851968, 0, 1441821, 851968, 0, 1441822, 851968, 0, 1441823, 851968, 0, 1441824, 983040, 0, 1507355, 786432, 1, 1572891, 786432, 1, 1638427, 786432, 1, 1703963, 786432, 1, 1769499, 786432, 1, 1835035, 786432, 1, 1900571, 786432, 1, 1966107, 786432, 1, 2031643, 786432, 1, 2097179, 786432, 1, 2162715, 786432, 1, 2228251, 786432, 1, 2293787, 786432, 1, 2097157, 327680, 6, 2097156, 262144, 6, 1703973, 458752, 2, 1703986, 786432, 0, 1703984, 917504, 0, 1703985, 851968, 0, 1703988, 983040, 0, 1703987, 851968, 0, 1769522, 786432, 1, 1835058, 786432, 1, 1900594, 786432, 1, 1966130, 786432, 1, 2031666, 786432, 1, 2097202, 786432, 1, 2162738, 786432, 1, 2228274, 786432, 1, 2293810, 786432, 1)
 
 [node name="Coin" parent="." instance=ExtResource("6_ugilt")]
 position = Vector2(170, 496)
@@ -32,7 +34,7 @@ position = Vector2(900, 439)
 
 [node name="Player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_ahtkj")]
 position = Vector2(32, 571)
-tilemap = NodePath("../TileMap")
+tilemap = NodePath("../Level3Tiles")
 
 [node name="GameController" parent="." instance=ExtResource("4_douvh")]
 level = 3
@@ -42,3 +44,20 @@ position = Vector2(479, 701)
 scale = Vector2(72.32, 1)
 
 [node name="BoundaryWall" parent="." instance=ExtResource("6_6njww")]
+
+[node name="Spring" parent="." instance=ExtResource("7_lu3kl")]
+position = Vector2(385, 495)
+
+[node name="Spring2" parent="." instance=ExtResource("7_lu3kl")]
+position = Vector2(440, 585)
+
+[node name="Enemy" parent="." instance=ExtResource("8_deq3u")]
+position = Vector2(203, 509)
+
+[node name="Enemy2" parent="." instance=ExtResource("8_deq3u")]
+position = Vector2(582, 379)
+
+[node name="Spring3" parent="." instance=ExtResource("7_lu3kl")]
+position = Vector2(675, 459)
+
+[node name="GrassBg" parent="." instance=ExtResource("9_83ikr")]
