@@ -95,16 +95,16 @@ func _physics_process(delta):
 		sprite.flip_h = 1
 		if velocity.x <= SPEED:
 			if is_on_floor():
-				velocity.x += direction * GROUND_ACCEL
+				velocity.x += direction * GROUND_ACCEL * delta * 60
 			else:
-				velocity.x += direction * AIR_ACCEL
+				velocity.x += direction * AIR_ACCEL * delta * 60
 	elif direction<0 and inputEnabled:
 		sprite.flip_h = 0
 		if velocity.x >= -SPEED:
 			if is_on_floor():
-				velocity.x += direction * GROUND_ACCEL
+				velocity.x += direction * GROUND_ACCEL * delta * 60
 			else:
-				velocity.x += direction * AIR_ACCEL
+				velocity.x += direction * AIR_ACCEL * delta * 60
 	else:
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, GROUND_DECEL)
