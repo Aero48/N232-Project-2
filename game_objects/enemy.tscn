@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmwi7bg15vt7u"]
+[gd_scene load_steps=7 format=3 uid="uid://cmwi7bg15vt7u"]
 
 [ext_resource type="Texture2D" uid="uid://bj7doui1q4po8" path="res://assets/ememy_1.png" id="1_n0hr0"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_s6d1c"]
@@ -21,8 +21,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plqs1"]
+size = Vector2(19, 15)
+
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 position = Vector2(0, -5)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_s6d1c")
 sprite = NodePath("AnimatedSprite2D")
 
@@ -37,4 +42,11 @@ frame_progress = 0.153489
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 4.5)
+shape = SubResource("RectangleShape2D_plqs1")
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

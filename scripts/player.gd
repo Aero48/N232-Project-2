@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var jumpSound: AudioStreamPlayer
 
 @export var slideSound: AudioStreamPlayer
+@export var squashSound: AudioStreamPlayer
 
 #Player horizontal acceleration while in air
 const AIR_ACCEL = 20.0
@@ -22,7 +23,7 @@ const SPEED = 150.0
 #Initial vertical velocity when player jumps
 const JUMP_VELOCITY = -300.0
 #Maximum vertical speed when falling
-const MAX_FALL_SPEED = 500
+const MAX_FALL_SPEED = 400
 
 var isSliding = false
 
@@ -36,6 +37,20 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func early_jump_timeout():
 	jumpTimeout = true
 	jumpTimer.stop()
+	
+func enemySquash():
+	squashSound.play()
+	velocity.y = JUMP_VELOCITY
+	jumpTimeout = false
+	#when player jumps, starts a timer that determines the maximum amount of time the player can hold jump for before gravity returns to normal
+	jumpTimer.start()
+	
+func jump():
+	jumpSound.play()
+	velocity.y = JUMP_VELOCITY
+	jumpTimeout = false
+	#when player jumps, starts a timer that determines the maximum amount of time the player can hold jump for before gravity returns to normal
+	jumpTimer.start()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -49,11 +64,7 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		jumpSound.play()
-		velocity.y = JUMP_VELOCITY
-		jumpTimeout = false
-		#when player jumps, starts a timer that determines the maximum amount of time the player can hold jump for before gravity returns to normal
-		jumpTimer.start()
+		jump()
 		
 	#This sets the gravity to a lower value when player is holding the jump button (only applies if player has actually jumped, and the maximum time hasn't been reached)
 	if Input.is_action_pressed("ui_accept") and !jumpTimeout:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1ng2ckcwr8im"]
+[gd_scene load_steps=9 format=3 uid="uid://c1ng2ckcwr8im"]
 
 [ext_resource type="PackedScene" uid="uid://bpchbip3scbub" path="res://game_objects/grass_tiles.tscn" id="1_4ax1w"]
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_t232b"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0ry63uwcp8d" path="res://game_objects/pit.tscn" id="5_0hyu6"]
 [ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="5_syhjj"]
 [ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="6_373j6"]
-[ext_resource type="Texture2D" uid="uid://7vl0wv00h8hp" path="res://assets/backgrounds/blue_sky.png" id="7_womgy"]
-[ext_resource type="Texture2D" uid="uid://l11igd6koech" path="res://assets/backgrounds/clouds.png" id="8_w0bmn"]
-[ext_resource type="Texture2D" uid="uid://bexj6yx14k1vu" path="res://assets/backgrounds/hills.png" id="9_tvfdg"]
+[ext_resource type="PackedScene" uid="uid://dxobti50tir4t" path="res://game_objects/grass_bg.tscn" id="7_6ukvo"]
 [ext_resource type="PackedScene" uid="uid://cmwi7bg15vt7u" path="res://game_objects/enemy.tscn" id="10_qeyps"]
 
 [node name="Platformer" type="Node2D"]
@@ -42,30 +40,10 @@ scale = Vector2(98.92, 1)
 
 [node name="BoundaryWall" parent="." instance=ExtResource("6_373j6")]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
-texture = ExtResource("7_womgy")
-centered = false
-
-[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(480, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Clouds"]
-texture = ExtResource("8_w0bmn")
-centered = false
-
-[node name="Hills" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(480, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Hills"]
-texture = ExtResource("9_tvfdg")
-centered = false
+[node name="GrassBg" parent="." instance=ExtResource("7_6ukvo")]
 
 [node name="Enemy" parent="." instance=ExtResource("10_qeyps")]
 position = Vector2(632, 342)
+
+[node name="Enemy2" parent="." instance=ExtResource("10_qeyps")]
+position = Vector2(909, 345)

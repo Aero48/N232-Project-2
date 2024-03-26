@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxobti50tir4t"]
+
+[ext_resource type="Texture2D" uid="uid://7vl0wv00h8hp" path="res://assets/backgrounds/blue_sky.png" id="1_vwynd"]
+[ext_resource type="Texture2D" uid="uid://l11igd6koech" path="res://assets/backgrounds/clouds.png" id="2_srycv"]
+[ext_resource type="Texture2D" uid="uid://bexj6yx14k1vu" path="res://assets/backgrounds/hills.png" id="3_48221"]
+
+[node name="GrassBg" type="ParallaxBackground"]
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_vwynd")
+centered = false
+
+[node name="Clouds" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(480, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Clouds"]
+texture = ExtResource("2_srycv")
+centered = false
+
+[node name="Hills" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(480, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hills"]
+texture = ExtResource("3_48221")
+centered = false
