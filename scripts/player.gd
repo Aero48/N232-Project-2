@@ -8,17 +8,23 @@ extends CharacterBody2D
 
 @export var sprite: AnimatedSprite2D
 
+@export var jumpSound: AudioStreamPlayer
+
+@export var slideSound: AudioStreamPlayer
+
 #Player horizontal acceleration while in air
 const AIR_ACCEL = 20.0
 #Player horizontal acceleration while on the ground
-const GROUND_ACCEL = 30.0
-const GROUND_DECEL = 40.0
+const GROUND_ACCEL = 20.0
+const GROUND_DECEL = 30.0
 #Player max horizontal speed
 const SPEED = 150.0
 #Initial vertical velocity when player jumps
 const JUMP_VELOCITY = -300.0
 #Maximum vertical speed when falling
 const MAX_FALL_SPEED = 500
+
+var isSliding = false
 
 #Variable for whether the jump timer has finished or not
 var jumpTimeout = true
@@ -43,6 +49,7 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		jumpSound.play()
 		velocity.y = JUMP_VELOCITY
 		jumpTimeout = false
 		#when player jumps, starts a timer that determines the maximum amount of time the player can hold jump for before gravity returns to normal
@@ -89,6 +96,13 @@ func _physics_process(delta):
 		sprite.animation = "jump"
 	else:
 		sprite.animation = "fall"
+		
+	if ((Input.is_action_pressed("ui_left") && velocity.x > 60) or (Input.is_action_pressed("ui_right") && velocity.x < -60)) && is_on_floor() && !isSliding:
+		slideSound.play()
+		isSliding = true
+	else:
+		slideSound.stop()
+		isSliding = false
 
 func _on_jump_timer_timeout():
 	jumpTimeout = true

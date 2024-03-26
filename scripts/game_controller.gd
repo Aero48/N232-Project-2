@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @export var level: int
+@export var coinSound: AudioStreamPlayer
 
 var score = 0
 
@@ -22,6 +23,7 @@ func change_level():
 	
 	
 func coin_collected():
+	coinSound.play()
 	score += 1
 	get_node("/root/Platformer/GameController/Score").text = str(score)+"/5"
 	if score >= 5:

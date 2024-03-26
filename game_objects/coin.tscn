@@ -1,9 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpgjxj01158r4"]
+[gd_scene load_steps=6 format=3 uid="uid://bpgjxj01158r4"]
 
 [ext_resource type="Texture2D" uid="uid://cvcfycy11o04a" path="res://assets/coin.png" id="1_6dvfo"]
 [ext_resource type="Script" path="res://scripts/coin.gd" id="1_r5ucw"]
+[ext_resource type="Texture2D" uid="uid://1axnb200n3fr" path="res://assets/coin_2.png" id="3_6sqne"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2q2p2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_23rg2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6dvfo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6sqne")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Coin" type="Area2D"]
 script = ExtResource("1_r5ucw")
@@ -11,8 +26,9 @@ script = ExtResource("1_r5ucw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2q2p2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("1_6dvfo")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_23rg2")
+autoplay = "default"
+frame_progress = 0.913329
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

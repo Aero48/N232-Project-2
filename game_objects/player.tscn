@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c381uru21milu"]
+[gd_scene load_steps=9 format=3 uid="uid://c381uru21milu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_clcy5"]
 [ext_resource type="Texture2D" uid="uid://cicdujygmnrya" path="res://assets/character_0001.png" id="2_l2p7a"]
 [ext_resource type="Script" path="res://scripts/follow_cam.gd" id="3_3htha"]
 [ext_resource type="Texture2D" uid="uid://dbg6xgms8sg2j" path="res://assets/character_0000.png" id="4_h4h80"]
+[ext_resource type="AudioStream" uid="uid://dno54v7men88t" path="res://assets/sounds/jump.ogg" id="5_5a1hu"]
+[ext_resource type="AudioStream" uid="uid://magy6uw86art" path="res://assets/sounds/slide.ogg" id="6_lx5fb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hnog"]
 
@@ -45,10 +47,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite", "jumpSound", "slideSound")]
 script = ExtResource("1_clcy5")
 jumpTimer = NodePath("JumpTimer")
 sprite = NodePath("AnimatedSprite2D")
+jumpSound = NodePath("JumpSound")
+slideSound = NodePath("SlideSound")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -63,6 +67,8 @@ zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 drag_horizontal_enabled = true
+drag_left_margin = 0.1
+drag_right_margin = 0.1
 script = ExtResource("3_3htha")
 
 [node name="JumpTimer" type="Timer" parent="."]
@@ -73,5 +79,12 @@ position = Vector2(0, -2.08)
 sprite_frames = SubResource("SpriteFrames_ph7hl")
 animation = &"jump"
 frame_progress = 0.148685
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5a1hu")
+volume_db = 1.874
+
+[node name="SlideSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lx5fb")
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
