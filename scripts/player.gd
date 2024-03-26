@@ -77,11 +77,11 @@ func _physics_process(delta):
 		early_jump_timeout()
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and inputEnabled:
+	if Input.is_action_just_pressed("jump") and is_on_floor() and inputEnabled:
 		jump()
 		
 	#This sets the gravity to a lower value when player is holding the jump button (only applies if player has actually jumped, and the maximum time hasn't been reached)
-	if Input.is_action_pressed("ui_accept") and !jumpTimeout:
+	if Input.is_action_pressed("jump") and !jumpTimeout:
 		gravity = ProjectSettings.get_setting("physics/2d/default_gravity")/4
 	else:
 		gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -90,7 +90,7 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("left", "right")
 	if direction>0 and inputEnabled:
 		sprite.flip_h = 1
 		if velocity.x <= SPEED:
@@ -122,7 +122,7 @@ func _physics_process(delta):
 	else:
 		sprite.animation = "fall"
 		
-	if ((Input.is_action_pressed("ui_left") && velocity.x > 60) or (Input.is_action_pressed("ui_right") && velocity.x < -60)) && is_on_floor() && !isSliding:
+	if ((Input.is_action_pressed("left") && velocity.x > 60) or (Input.is_action_pressed("right") && velocity.x < -60)) && is_on_floor() && !isSliding:
 		slideSound.play()
 		isSliding = true
 	else:
