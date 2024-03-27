@@ -36,18 +36,18 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_h4h80")
+"texture": ExtResource("2_l2p7a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_l2p7a")
+"texture": ExtResource("4_h4h80")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite", "jumpSound", "slideSound", "squashSound", "hitSound", "boingSound") groups=["player"]]
@@ -83,8 +83,7 @@ wait_time = 0.35
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2.08)
 sprite_frames = SubResource("SpriteFrames_ph7hl")
-animation = &"jump"
-frame_progress = 0.148685
+animation = &"walk"
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_5a1hu")
