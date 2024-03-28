@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmwi7bg15vt7u"]
+[gd_scene load_steps=8 format=3 uid="uid://cmwi7bg15vt7u"]
 
 [ext_resource type="Texture2D" uid="uid://bj7doui1q4po8" path="res://assets/ememy_1.png" id="1_n0hr0"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_s6d1c"]
 [ext_resource type="Texture2D" uid="uid://hxdud48ru5b0" path="res://assets/enemy_2.png" id="2_17usp"]
+[ext_resource type="AudioStream" uid="uid://c0nb8gj60qeoc" path="res://assets/sounds/boing.ogg" id="4_7do5h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xkqk"]
 size = Vector2(15, 13)
@@ -24,12 +25,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plqs1"]
 size = Vector2(19, 15)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite") groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "boingSound") groups=["enemies"]]
 position = Vector2(0, -5)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_s6d1c")
 sprite = NodePath("AnimatedSprite2D")
+boingSound = NodePath("Boing")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 5.5)
@@ -47,6 +49,9 @@ frame_progress = 0.153489
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, 4.5)
 shape = SubResource("RectangleShape2D_plqs1")
+
+[node name="Boing" type="AudioStreamPlayer" parent="." groups=["enemies"]]
+stream = ExtResource("4_7do5h")
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

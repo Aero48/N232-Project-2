@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @export var level: int
+@export var coins: int
 @export var coinSound: AudioStreamPlayer
 @export var deathSound: AudioStreamPlayer
 @export var levelCompleteSound: AudioStreamPlayer
@@ -23,8 +24,8 @@ func change_level():
 	
 func coin_collected():
 	score += 1
-	get_node("/root/Platformer/GameController/Score").text = str(score)+"/5"
-	if score >= 5:
+	get_node("/root/Platformer/GameController/Score").text = str(score)+"/" + str(coins)
+	if score >= coins:
 		get_node("/root/Platformer/Player").inputEnabled = false
 		levelCompleteSound.play()
 		levelComplete = true
@@ -41,4 +42,7 @@ func player_death():
 		deathTimer.start()
 		await deathTimer.timeout
 		get_tree().reload_current_scene()
+		
+func _ready():
+	get_node("/root/Platformer/GameController/Score").text = str(score)+"/" + str(coins)
 	

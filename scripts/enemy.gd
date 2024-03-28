@@ -2,14 +2,24 @@ extends CharacterBody2D
 
 @export var sprite: AnimatedSprite2D
 
+@export var boingSound: AudioStreamPlayer
+
 var speed = -2000
 
 const MAX_FALL_SPEED = 500
+
+#Initial vertical velocity when enemy bounces on spring
+const SPRING_VELOCITY = -600.0
 
 var active = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func springJump():
+	boingSound.play()
+	velocity.y = SPRING_VELOCITY
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

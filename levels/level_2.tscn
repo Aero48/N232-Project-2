@@ -37,6 +37,7 @@ tilemap = NodePath("../Level2Tiles")
 
 [node name="GameController" parent="." instance=ExtResource("4_sug32")]
 level = 2
+coins = 5
 
 [node name="Pit" parent="." instance=ExtResource("5_1mngv")]
 position = Vector2(481, 686)

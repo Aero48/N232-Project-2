@@ -114,7 +114,6 @@ func _physics_process(delta):
 
 	# Play certain animations depending on the scenario
 	if is_on_floor() and velocity.x != 0:
-		print(velocity.x)
 		sprite.speed_scale = abs(velocity.x) / SPEED
 		sprite.animation = "walk"
 	elif is_on_floor() and velocity.x == 0:

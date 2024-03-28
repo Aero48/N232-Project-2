@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2jo3bfh074k2"]
+
+[ext_resource type="TileSet" uid="uid://bfqp6mxmqt3x3" path="res://assets/grass_tileset.tres" id="1_e67yl"]
+[ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_hr60u"]
+[ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="3_3ohvo"]
+[ext_resource type="PackedScene" uid="uid://0ry63uwcp8d" path="res://game_objects/pit.tscn" id="4_olevc"]
+[ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/game_controller.tscn" id="5_0q5r0"]
+[ext_resource type="PackedScene" uid="uid://cmwi7bg15vt7u" path="res://game_objects/enemy.tscn" id="6_4iyvo"]
+[ext_resource type="PackedScene" uid="uid://cqtr71ud1n7ca" path="res://game_objects/spring.tscn" id="7_y6fcp"]
+
+[node name="Platformer" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_e67yl")
+format = 2
+layer_0/tile_data = PackedInt32Array(1376256, 131072, 1, 1376257, 131072, 1, 1376258, 131072, 1, 1376259, 131072, 1, 1376260, 131072, 1, 1376261, 131072, 1, 1376262, 131072, 1, 1376263, 131072, 1, 1376264, 131072, 1, 1376265, 131072, 1, 1376266, 196608, 1, 53, 458752, 2, 1376274, 458752, 2, 1310744, 851968, 7, 1310745, 917504, 7, 1310746, 917504, 7, 1310747, 917504, 7, 1310748, 917504, 7, 1310749, 917504, 7, 1310750, 917504, 7, 1310751, 917504, 7, 1310752, 983040, 7, 1245221, 458752, 2, 1114154, 917504, 7, 1114155, 917504, 7, 1114156, 917504, 7, 1114157, 917504, 7, 1114158, 983040, 7, 1114150, 851968, 7, 1114151, 917504, 7, 1114152, 917504, 7, 1114153, 917504, 7)
+
+[node name="Player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("2_hr60u")]
+position = Vector2(33, 358)
+tilemap = NodePath("../TileMap")
+
+[node name="BoundaryWall" parent="." instance=ExtResource("3_3ohvo")]
+
+[node name="Pit" parent="." instance=ExtResource("4_olevc")]
+position = Vector2(479, 701)
+scale = Vector2(72.32, 1)
+
+[node name="GameController" parent="." instance=ExtResource("5_0q5r0")]
+level = 4
+coins = 8
+
+[node name="Enemy" parent="." instance=ExtResource("6_4iyvo")]
+position = Vector2(717, 293)
+
+[node name="Spring" parent="." instance=ExtResource("7_y6fcp")]
+position = Vector2(765, 297)
+
+[node name="Spring2" parent="." instance=ExtResource("7_y6fcp")]
+position = Vector2(675, 333)

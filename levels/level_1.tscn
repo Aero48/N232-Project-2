@@ -18,6 +18,7 @@ position = Vector2(42, 437)
 tilemap = NodePath("../GrassTiles")
 
 [node name="GameController" parent="." instance=ExtResource("4_sc38d")]
+coins = 5
 
 [node name="Coin" parent="." instance=ExtResource("5_syhjj")]
 position = Vector2(219, 430)

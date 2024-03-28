@@ -30,7 +30,7 @@ offset_right = 121.0
 offset_bottom = 55.0
 theme_override_fonts/font = ExtResource("2_0mrmu")
 theme_override_font_sizes/font_size = 41
-text = "0/5"
+text = "0/0"
 script = ExtResource("2_fvgpf")
 
 [node name="CoinSound" type="AudioStreamPlayer" parent="."]
