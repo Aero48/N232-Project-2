@@ -6,10 +6,11 @@ extends CharacterBody2D
 #Connects to tilemap for camera boundaries
 @export var tilemap: TileMap
 
+#For controlling player animations
 @export var sprite: AnimatedSprite2D
 
+#Sound players
 @export var jumpSound: AudioStreamPlayer
-
 @export var slideSound: AudioStreamPlayer
 @export var squashSound: AudioStreamPlayer
 @export var hitSound: AudioStreamPlayer
@@ -29,6 +30,7 @@ const SPRING_VELOCITY = -600.0
 #Maximum vertical speed when falling
 const MAX_FALL_SPEED = 400
 
+#Variable used to determine whether or not to play sliding sound
 var isSliding = false
 
 #Variable for whether the jump timer has finished or not
@@ -44,7 +46,8 @@ var inputEnabled = true
 func early_jump_timeout():
 	jumpTimeout = true
 	jumpTimer.stop()
-	
+
+#Collection of jump functions for different conditions. Play different sounds and have different jump velocities
 func enemySquash():
 	squashSound.play()
 	velocity.y = JUMP_VELOCITY
@@ -89,7 +92,6 @@ func _physics_process(delta):
 		
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("left", "right")
 	if direction>0 and inputEnabled:
 		sprite.flip_h = 1
@@ -106,6 +108,7 @@ func _physics_process(delta):
 			else:
 				velocity.x += direction * AIR_ACCEL * delta * 60
 	else:
+		#Makes player slow to a stop when not pressing left or right
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, GROUND_DECEL)
 		else:
@@ -114,6 +117,7 @@ func _physics_process(delta):
 
 	# Play certain animations depending on the scenario
 	if is_on_floor() and velocity.x != 0:
+		#Animation plays at different speed depending on velocity
 		sprite.speed_scale = abs(velocity.x) / SPEED
 		sprite.animation = "walk"
 	elif is_on_floor() and velocity.x == 0:
@@ -122,20 +126,22 @@ func _physics_process(delta):
 		sprite.animation = "jump"
 	else:
 		sprite.animation = "fall"
-		
+	
+	#Really zany code just to play a slide sound when player is sliding.
 	if ((Input.is_action_pressed("left") && velocity.x > 60) or (Input.is_action_pressed("right") && velocity.x < -60)) && is_on_floor() && !isSliding:
 		slideSound.play()
 		isSliding = true
 	else:
 		slideSound.stop()
 		isSliding = false
-		
+	
+	#Bonk!
 	if is_on_ceiling():
 		hitSound.play()
 
+#Disables the lower gravity when holding jump button
 func _on_jump_timer_timeout():
 	jumpTimeout = true
-	pass
 	
 func _ready():
 	sprite.play()

@@ -1,15 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cg47xcya4kbjl"]
+[gd_scene load_steps=8 format=3 uid="uid://cg47xcya4kbjl"]
 
 [ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_2v3on"]
 [ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="2_0mrmu"]
-[ext_resource type="Script" path="res://scripts/score.gd" id="2_fvgpf"]
 [ext_resource type="Texture2D" uid="uid://wyuge5yf5xhv" path="res://assets/ui_bg.png" id="2_mejei"]
 [ext_resource type="AudioStream" uid="uid://cjjovp2ciq5ot" path="res://assets/sounds/coin.ogg" id="3_sad5q"]
 [ext_resource type="AudioStream" uid="uid://bvlqi6gvcg4k" path="res://assets/sounds/death.ogg" id="4_kgl7o"]
 [ext_resource type="AudioStream" uid="uid://bl6rr6skldwx" path="res://assets/sounds/level_win.ogg" id="5_bpqqo"]
 [ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="8_86o28"]
 
-[node name="GameController" type="CanvasLayer" node_paths=PackedStringArray("coinSound", "deathSound", "levelCompleteSound", "deathTimer", "nextLevelTimer")]
+[node name="GameController" type="CanvasLayer" node_paths=PackedStringArray("coinSound", "deathSound", "levelCompleteSound", "deathTimer", "nextLevelTimer", "scoreLabel")]
 script = ExtResource("1_2v3on")
 level = 1
 coinSound = NodePath("CoinSound")
@@ -17,6 +16,7 @@ deathSound = NodePath("DeathSound")
 levelCompleteSound = NodePath("LevelComplete")
 deathTimer = NodePath("DeathTimer")
 nextLevelTimer = NodePath("NextLevelTimer")
+scoreLabel = NodePath("Score")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(64, 63)
@@ -31,7 +31,6 @@ offset_bottom = 55.0
 theme_override_fonts/font = ExtResource("2_0mrmu")
 theme_override_font_sizes/font_size = 41
 text = "0/0"
-script = ExtResource("2_fvgpf")
 
 [node name="CoinSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_sad5q")
