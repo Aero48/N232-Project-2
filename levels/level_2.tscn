@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d0xmfn3gr1cip"]
 
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="3_auscr"]
-[ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/game_controller.tscn" id="4_sug32"]
+[ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/coin_controller.tscn" id="4_sug32"]
 [ext_resource type="PackedScene" uid="uid://0ry63uwcp8d" path="res://game_objects/pit.tscn" id="5_1mngv"]
 [ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="6_1iafx"]
 [ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="6_2epep"]

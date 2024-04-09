@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Project-2"
+config/name="Somewhere-New"
 run/main_scene="res://levels/title.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameController="*res://scripts/game_controller.gd"
 
 [display]
 

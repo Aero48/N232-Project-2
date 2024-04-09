@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bpchbip3scbub" path="res://game_objects/grass_tiles.tscn" id="1_4ax1w"]
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_t232b"]
-[ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/game_controller.tscn" id="4_sc38d"]
+[ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/coin_controller.tscn" id="4_sc38d"]
 [ext_resource type="PackedScene" uid="uid://0ry63uwcp8d" path="res://game_objects/pit.tscn" id="5_0hyu6"]
 [ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="5_syhjj"]
 [ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="6_373j6"]

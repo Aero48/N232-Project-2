@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_hr60u"]
 [ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="3_3ohvo"]
 [ext_resource type="PackedScene" uid="uid://0ry63uwcp8d" path="res://game_objects/pit.tscn" id="4_olevc"]
-[ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/game_controller.tscn" id="5_0q5r0"]
+[ext_resource type="PackedScene" uid="uid://cg47xcya4kbjl" path="res://game_objects/coin_controller.tscn" id="5_0q5r0"]
 [ext_resource type="PackedScene" uid="uid://cmwi7bg15vt7u" path="res://game_objects/enemy.tscn" id="6_4iyvo"]
 [ext_resource type="PackedScene" uid="uid://cqtr71ud1n7ca" path="res://game_objects/spring.tscn" id="7_y6fcp"]
 [ext_resource type="PackedScene" uid="uid://dxobti50tir4t" path="res://game_objects/grass_bg.tscn" id="8_67k6i"]

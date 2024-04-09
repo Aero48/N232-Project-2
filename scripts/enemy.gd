@@ -54,4 +54,4 @@ func _on_area_2d_body_entered(body):
 			body.enemySquash() 
 		else:
 			body.hide()
-			get_node("/root/Platformer/GameController").player_death()
+			get_node("/root/GameController").player_death()

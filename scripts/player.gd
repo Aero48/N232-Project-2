@@ -15,6 +15,7 @@ extends CharacterBody2D
 @export var squashSound: AudioStreamPlayer
 @export var hitSound: AudioStreamPlayer
 @export var boingSound: AudioStreamPlayer
+@export var deathSound: AudioStreamPlayer
 
 #Player horizontal acceleration while in air
 const AIR_ACCEL = 20.0
@@ -145,3 +146,5 @@ func _on_jump_timer_timeout():
 	
 func _ready():
 	sprite.play()
+	#When player is spawned in, sets the level complete variable in game controller to false
+	get_node("/root/GameController").levelComplete = false
