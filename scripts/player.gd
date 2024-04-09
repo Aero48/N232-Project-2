@@ -150,5 +150,6 @@ func _on_jump_timer_timeout():
 	
 func _ready():
 	sprite.play()
+	sprite.flip_h = 1
 	#When player is spawned in, sets the level complete variable in game controller to false
 	get_node("/root/GameController").levelComplete = false
