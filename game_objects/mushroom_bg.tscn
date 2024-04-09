@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2pvrfb24mq03"]
+
+[ext_resource type="Texture2D" uid="uid://bjfjilpqis0bh" path="res://assets/backgrounds/yellow_sky.png" id="1_dey5d"]
+[ext_resource type="Texture2D" uid="uid://l11igd6koech" path="res://assets/backgrounds/clouds.png" id="2_0w03s"]
+[ext_resource type="Texture2D" uid="uid://bs7766sf17uvc" path="res://assets/backgrounds/mushroom_hills.png" id="3_a4n7r"]
+
+[node name="MushroomBg" type="ParallaxBackground"]
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_dey5d")
+centered = false
+
+[node name="Clouds" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(480, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Clouds"]
+texture = ExtResource("2_0w03s")
+centered = false
+
+[node name="Hills" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(480, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hills"]
+texture = ExtResource("3_a4n7r")
+centered = false

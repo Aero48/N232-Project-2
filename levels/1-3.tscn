@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://brkv142lia3fn"]
+[gd_scene load_steps=15 format=3 uid="uid://brkv142lia3fn"]
 
 [ext_resource type="TileSet" uid="uid://bfqp6mxmqt3x3" path="res://assets/grass_tileset.tres" id="1_xptt5"]
 [ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="2_ar8ji"]
@@ -8,7 +8,33 @@
 [ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="6_c531f"]
 [ext_resource type="PackedScene" uid="uid://cqtr71ud1n7ca" path="res://game_objects/spring.tscn" id="7_nvb74"]
 [ext_resource type="PackedScene" uid="uid://cmwi7bg15vt7u" path="res://game_objects/enemy.tscn" id="8_6yu2n"]
-[ext_resource type="PackedScene" uid="uid://dxobti50tir4t" path="res://game_objects/grass_bg.tscn" id="9_w8ygf"]
+[ext_resource type="PackedScene" uid="uid://c2pvrfb24mq03" path="res://game_objects/mushroom_bg.tscn" id="9_j12h8"]
+[ext_resource type="Texture2D" uid="uid://cjcaxu0j0q2p7" path="res://assets/down_arrow.png" id="10_glxtb"]
+[ext_resource type="Script" path="res://scripts/down_arrow.gd" id="11_b3t04"]
+
+[sub_resource type="Animation" id="Animation_omt0g"]
+resource_name = "down_arrow"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(1980, 525), Vector2(1980, 510), Vector2(1980, 525)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ygvgq"]
+_data = {
+"down_arrow": SubResource("Animation_omt0g")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gh57"]
+size = Vector2(105, 68.5)
 
 [node name="Platformer" type="Node2D"]
 
@@ -61,8 +87,6 @@ position = Vector2(582, 379)
 [node name="Spring3" parent="." instance=ExtResource("7_nvb74")]
 position = Vector2(675, 459)
 
-[node name="GrassBg" parent="." instance=ExtResource("9_w8ygf")]
-
 [node name="Spring4" parent="." instance=ExtResource("7_nvb74")]
 position = Vector2(1071, 441)
 
@@ -80,3 +104,25 @@ position = Vector2(1452, 559)
 
 [node name="Coin8" parent="." instance=ExtResource("2_ar8ji")]
 position = Vector2(2491, 535)
+
+[node name="GrassBg" parent="." instance=ExtResource("9_j12h8")]
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1980, 525)
+texture = ExtResource("10_glxtb")
+script = ExtResource("11_b3t04")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow"]
+libraries = {
+"": SubResource("AnimationLibrary_ygvgq")
+}
+autoplay = "down_arrow"
+
+[node name="ArrowTrigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArrowTrigger"]
+position = Vector2(2377.5, 540.75)
+shape = SubResource("RectangleShape2D_6gh57")
+
+[connection signal="body_entered" from="ArrowTrigger" to="Arrow" method="_on_arrow_trigger_body_entered"]
