@@ -16,13 +16,6 @@ extends CanvasLayer
 
 #Current player coins in level
 var score = 0
-
-#Makes sure next level exists before starting it
-func change_level():
-	if ResourceLoader.exists("res://levels/level_"+str(level+1)+".tscn"):
-		get_tree().change_scene_to_file("res://levels/level_"+str(level+1)+".tscn")
-	else:
-		get_tree().change_scene_to_file("res://levels/title.tscn")
 	
 func coin_collected():
 	score += 1
@@ -34,7 +27,7 @@ func coin_collected():
 		get_node("/root/GameController").levelComplete = true
 		nextLevelTimer.start()
 		await nextLevelTimer.timeout
-		change_level()
+		get_node("/root/GameController").change_scene("1-"+str(level+1))
 	else:
 		coinSound.play()
 		

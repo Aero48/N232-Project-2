@@ -11,7 +11,7 @@ func _on_start_btn_pressed():
 		startSound.play()
 		startTimer.start()
 		await startTimer.timeout
-		get_tree().change_scene_to_file("res://levels/level_1.tscn")
+		get_node("/root/GameController").change_scene("1-1")
 
 
 func _on_quit_btn_pressed():

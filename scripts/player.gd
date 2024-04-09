@@ -43,6 +43,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #Determines whether or not a player inputs are enabled
 var inputEnabled = true
 
+#Determines whether a player is alive or not. Used for disabling physics
+var isAlive = true
+
 # Runs when player stops holding the jump button, or starts moving down
 func early_jump_timeout():
 	jumpTimeout = true
@@ -71,74 +74,75 @@ func springJump():
 	jumpTimer.start()
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		if velocity.y <= MAX_FALL_SPEED:
-			velocity.y += gravity * delta
+	if isAlive:
+		# Add the gravity.
+		if not is_on_floor():
+			if velocity.y <= MAX_FALL_SPEED:
+				velocity.y += gravity * delta
 	
-	#Stops the jump timer if player starts moving down (hits head on blocks above for example)
-	if velocity.y > 0:
-		early_jump_timeout()
+		#Stops the jump timer if player starts moving down (hits head on blocks above for example)
+		if velocity.y > 0:
+			early_jump_timeout()
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor() and inputEnabled:
-		jump()
+		# Handle jump.
+		if Input.is_action_just_pressed("jump") and is_on_floor() and inputEnabled:
+			jump()
 		
-	#This sets the gravity to a lower value when player is holding the jump button (only applies if player has actually jumped, and the maximum time hasn't been reached)
-	if Input.is_action_pressed("jump") and !jumpTimeout:
-		gravity = ProjectSettings.get_setting("physics/2d/default_gravity")/4
-	else:
-		gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-		early_jump_timeout()
-		
-
-	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis("left", "right")
-	if direction>0 and inputEnabled:
-		sprite.flip_h = 1
-		if velocity.x <= SPEED:
-			if is_on_floor():
-				velocity.x += direction * GROUND_ACCEL * delta * 60
-			else:
-				velocity.x += direction * AIR_ACCEL * delta * 60
-	elif direction<0 and inputEnabled:
-		sprite.flip_h = 0
-		if velocity.x >= -SPEED:
-			if is_on_floor():
-				velocity.x += direction * GROUND_ACCEL * delta * 60
-			else:
-				velocity.x += direction * AIR_ACCEL * delta * 60
-	else:
-		#Makes player slow to a stop when not pressing left or right
-		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, GROUND_DECEL)
+		#This sets the gravity to a lower value when player is holding the jump button (only applies if player has actually jumped, and the maximum time hasn't been reached)
+		if Input.is_action_pressed("jump") and !jumpTimeout:
+			gravity = ProjectSettings.get_setting("physics/2d/default_gravity")/4
 		else:
-			velocity.x = move_toward(velocity.x, 0, AIR_ACCEL)
-	move_and_slide()
+			gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+			early_jump_timeout()
+		
 
-	# Play certain animations depending on the scenario
-	if is_on_floor() and velocity.x != 0:
-		#Animation plays at different speed depending on velocity
-		sprite.speed_scale = abs(velocity.x) / SPEED
-		sprite.animation = "walk"
-	elif is_on_floor() and velocity.x == 0:
-		sprite.animation = "idle"
-	elif !is_on_floor() and velocity.y < 0:
-		sprite.animation = "jump"
-	else:
-		sprite.animation = "fall"
+		# Get the input direction and handle the movement/deceleration.
+		var direction = Input.get_axis("left", "right")
+		if direction>0 and inputEnabled:
+			sprite.flip_h = 1
+			if velocity.x <= SPEED:
+				if is_on_floor():
+					velocity.x += direction * GROUND_ACCEL * delta * 60
+				else:
+					velocity.x += direction * AIR_ACCEL * delta * 60
+		elif direction<0 and inputEnabled:
+			sprite.flip_h = 0
+			if velocity.x >= -SPEED:
+				if is_on_floor():
+					velocity.x += direction * GROUND_ACCEL * delta * 60
+				else:
+					velocity.x += direction * AIR_ACCEL * delta * 60
+		else:
+			#Makes player slow to a stop when not pressing left or right
+			if is_on_floor():
+				velocity.x = move_toward(velocity.x, 0, GROUND_DECEL)
+			else:
+				velocity.x = move_toward(velocity.x, 0, AIR_ACCEL)
+		move_and_slide()
+
+		# Play certain animations depending on the scenario
+		if is_on_floor() and velocity.x != 0:
+			#Animation plays at different speed depending on velocity
+			sprite.speed_scale = abs(velocity.x) / SPEED
+			sprite.animation = "walk"
+		elif is_on_floor() and velocity.x == 0:
+			sprite.animation = "idle"
+		elif !is_on_floor() and velocity.y < 0:
+			sprite.animation = "jump"
+		else:
+			sprite.animation = "fall"
 	
-	#Really zany code just to play a slide sound when player is sliding.
-	if ((Input.is_action_pressed("left") && velocity.x > 60) or (Input.is_action_pressed("right") && velocity.x < -60)) && is_on_floor() && !isSliding:
-		slideSound.play()
-		isSliding = true
-	else:
-		slideSound.stop()
-		isSliding = false
+		#Really zany code just to play a slide sound when player is sliding.
+		if ((Input.is_action_pressed("left") && velocity.x > 60) or (Input.is_action_pressed("right") && velocity.x < -60)) && is_on_floor() && !isSliding:
+			slideSound.play()
+			isSliding = true
+		else:
+			slideSound.stop()
+			isSliding = false
 	
-	#Bonk!
-	if is_on_ceiling():
-		hitSound.play()
+		#Bonk!
+		if is_on_ceiling():
+			hitSound.play()
 
 #Disables the lower gravity when holding jump button
 func _on_jump_timer_timeout():
