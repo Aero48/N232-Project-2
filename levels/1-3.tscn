@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brkv142lia3fn"]
+[gd_scene load_steps=17 format=3 uid="uid://brkv142lia3fn"]
 
 [ext_resource type="TileSet" uid="uid://bfqp6mxmqt3x3" path="res://assets/grass_tileset.tres" id="1_xptt5"]
 [ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="2_ar8ji"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c2pvrfb24mq03" path="res://game_objects/mushroom_bg.tscn" id="9_j12h8"]
 [ext_resource type="Texture2D" uid="uid://cjcaxu0j0q2p7" path="res://assets/down_arrow.png" id="10_glxtb"]
 [ext_resource type="Script" path="res://scripts/down_arrow.gd" id="11_b3t04"]
+[ext_resource type="Script" path="res://scripts/end_demo_trigger.gd" id="12_habug"]
 
 [sub_resource type="Animation" id="Animation_omt0g"]
 resource_name = "down_arrow"
@@ -35,6 +36,9 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gh57"]
 size = Vector2(105, 68.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ri2lu"]
+size = Vector2(924, 20)
 
 [node name="Platformer" type="Node2D"]
 
@@ -125,4 +129,12 @@ autoplay = "down_arrow"
 position = Vector2(2377.5, 540.75)
 shape = SubResource("RectangleShape2D_6gh57")
 
+[node name="EndOfDemoTrigger" type="Area2D" parent="."]
+position = Vector2(1986, 795)
+script = ExtResource("12_habug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndOfDemoTrigger"]
+shape = SubResource("RectangleShape2D_ri2lu")
+
 [connection signal="body_entered" from="ArrowTrigger" to="Arrow" method="_on_arrow_trigger_body_entered"]
+[connection signal="body_entered" from="EndOfDemoTrigger" to="EndOfDemoTrigger" method="_on_body_entered"]
