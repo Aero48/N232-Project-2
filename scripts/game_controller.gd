@@ -1,5 +1,7 @@
 extends Node
 
+var currentEffect = 0
+
 var playerEffects = [
 	{
 		"name": "Normal",
@@ -7,6 +9,14 @@ var playerEffects = [
 	},
 	{
 		"name": "Double Jump",
+		"collected": true
+	},
+	{
+		"name": "Skates",
+		"collected": true
+	},
+	{
+		"name": "Iron",
 		"collected": true
 	}
 ]

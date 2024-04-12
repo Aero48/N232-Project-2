@@ -31,6 +31,12 @@ const SPRING_VELOCITY = -600.0
 #Maximum vertical speed when falling
 const MAX_FALL_SPEED = 400
 
+#Player movement modifiers affected by some powerups/effects
+var groundAccelMod = 0
+var groundDecelMod = 0
+var airAccelMod = 0
+var speedMod = 0
+
 #Variable used to determine whether or not to play sliding sound
 var isSliding = false
 
@@ -47,7 +53,7 @@ var inputEnabled = true
 var isAlive = true
 
 #Player effect
-var currentEffect = 1
+var currentEffect = 0
 
 #Determines whether a player has already used their double jump (applies only to the double jump effect)
 var doubleJumped = false
@@ -115,24 +121,24 @@ func _physics_process(delta):
 		var direction = Input.get_axis("left", "right")
 		if direction>0 and inputEnabled:
 			sprite.flip_h = 1
-			if velocity.x <= SPEED:
+			if velocity.x <= (SPEED + speedMod):
 				if is_on_floor():
-					velocity.x += direction * GROUND_ACCEL * delta * 60
+					velocity.x += direction * (GROUND_ACCEL+groundAccelMod) * delta * 60
 				else:
-					velocity.x += direction * AIR_ACCEL * delta * 60
+					velocity.x += direction * (AIR_ACCEL+airAccelMod) * delta * 60
 		elif direction<0 and inputEnabled:
 			sprite.flip_h = 0
-			if velocity.x >= -SPEED:
+			if velocity.x >= -(SPEED + speedMod):
 				if is_on_floor():
-					velocity.x += direction * GROUND_ACCEL * delta * 60
+					velocity.x += direction * (GROUND_ACCEL+groundAccelMod) * delta * 60
 				else:
-					velocity.x += direction * AIR_ACCEL * delta * 60
+					velocity.x += direction * (AIR_ACCEL+airAccelMod) * delta * 60
 		else:
 			#Makes player slow to a stop when not pressing left or right
 			if is_on_floor():
-				velocity.x = move_toward(velocity.x, 0, GROUND_DECEL*delta*60)
+				velocity.x = move_toward(velocity.x, 0, (GROUND_DECEL+groundDecelMod)*delta*60)
 			else:
-				velocity.x = move_toward(velocity.x, 0, AIR_ACCEL*delta*60)
+				velocity.x = move_toward(velocity.x, 0, (AIR_ACCEL+airAccelMod)*delta*60)
 		move_and_slide()
 
 		# Play certain animations depending on the scenario
@@ -165,10 +171,30 @@ func _on_jump_timer_timeout():
 	
 #When the player changes effect
 func changeEffect(effect):
-	currentEffect = effect
+	if get_node("/root/GameController").playerEffects[effect].collected:
+		currentEffect = effect
+		get_node("/root/GameController").currentEffect = effect
+		
+		if effect == 2:
+			groundAccelMod = -10
+			groundDecelMod = -10
+			airAccelMod = -10
+			speedMod = 100
+		elif effect == 3:
+			groundAccelMod = -17
+			groundDecelMod =0
+			airAccelMod = -17
+			speedMod = 0
+		else:
+			groundAccelMod = 0
+			groundDecelMod = 0
+			airAccelMod = 0
+			speedMod = 0
+			
 	
 func _ready():
 	sprite.play()
 	sprite.flip_h = 1
 	#When player is spawned in, sets the level complete variable in game controller to false
 	get_node("/root/GameController").levelComplete = false
+	changeEffect(get_node("/root/GameController").currentEffect)
