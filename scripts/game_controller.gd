@@ -1,5 +1,16 @@
 extends Node
 
+var playerEffects = [
+	{
+		"name": "Normal",
+		"collected": true
+	},
+	{
+		"name": "Double Jump",
+		"collected": true
+	}
+]
+
 #Certain things disable themselves when level is completed
 var levelComplete = false
 

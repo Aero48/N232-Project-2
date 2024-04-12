@@ -46,6 +46,12 @@ var inputEnabled = true
 #Determines whether a player is alive or not. Used for disabling physics
 var isAlive = true
 
+#Player effect
+var currentEffect = 1
+
+#Determines whether a player has already used their double jump (applies only to the double jump effect)
+var doubleJumped = false
+
 # Runs when player stops holding the jump button, or starts moving down
 func early_jump_timeout():
 	jumpTimeout = true
@@ -85,8 +91,16 @@ func _physics_process(delta):
 			early_jump_timeout()
 
 		# Handle jump.
-		if Input.is_action_just_pressed("jump") and is_on_floor() and inputEnabled:
-			jump()
+		if currentEffect != 1:
+			if Input.is_action_just_pressed("jump") and is_on_floor() and inputEnabled:
+				jump()
+		else:
+			if Input.is_action_just_pressed("jump") and !doubleJumped and inputEnabled:
+				jump()
+				doubleJumped = true
+				
+		if is_on_floor() and doubleJumped:
+			doubleJumped = false
 		
 		#This sets the gravity to a lower value when player is holding the jump button (only applies if player has actually jumped, and the maximum time hasn't been reached)
 		if Input.is_action_pressed("jump") and !jumpTimeout:
@@ -94,6 +108,7 @@ func _physics_process(delta):
 		else:
 			gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 			early_jump_timeout()
+			
 		
 
 		# Get the input direction and handle the movement/deceleration.
@@ -115,9 +130,9 @@ func _physics_process(delta):
 		else:
 			#Makes player slow to a stop when not pressing left or right
 			if is_on_floor():
-				velocity.x = move_toward(velocity.x, 0, GROUND_DECEL)
+				velocity.x = move_toward(velocity.x, 0, GROUND_DECEL*delta*60)
 			else:
-				velocity.x = move_toward(velocity.x, 0, AIR_ACCEL)
+				velocity.x = move_toward(velocity.x, 0, AIR_ACCEL*delta*60)
 		move_and_slide()
 
 		# Play certain animations depending on the scenario
@@ -147,6 +162,10 @@ func _physics_process(delta):
 #Disables the lower gravity when holding jump button
 func _on_jump_timer_timeout():
 	jumpTimeout = true
+	
+#When the player changes effect
+func changeEffect(effect):
+	currentEffect = effect
 	
 func _ready():
 	sprite.play()

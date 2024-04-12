@@ -41,7 +41,7 @@ level = 2
 coins = 8
 
 [node name="Pit" parent="." instance=ExtResource("5_2eysy")]
-position = Vector2(481, 686)
+position = Vector2(1033, 686)
 scale = Vector2(82.16, 1)
 
 [node name="BoundaryWall" parent="." instance=ExtResource("6_cs53i")]
@@ -86,3 +86,6 @@ position = Vector2(1959, 327)
 
 [node name="Enemy9" parent="." instance=ExtResource("8_55f1i")]
 position = Vector2(1998, 398)
+
+[node name="BoundaryWall2" parent="." instance=ExtResource("6_cs53i")]
+position = Vector2(2062, 341)

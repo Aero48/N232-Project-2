@@ -37,8 +37,8 @@ position = Vector2(782, 356)
 position = Vector2(1032, 422)
 
 [node name="Pit" parent="." instance=ExtResource("5_4tr2t")]
-position = Vector2(487, 699)
-scale = Vector2(98.92, 1)
+position = Vector2(990, 709)
+scale = Vector2(203.522, 1)
 
 [node name="BoundaryWall" parent="." instance=ExtResource("6_1gggp")]
 
@@ -70,3 +70,6 @@ position = Vector2(1415, 327)
 
 [node name="Enemy6" parent="." instance=ExtResource("8_8ucjm")]
 position = Vector2(2366, 382)
+
+[node name="BoundaryWall2" parent="." instance=ExtResource("6_1gggp")]
+position = Vector2(2584, 326)
