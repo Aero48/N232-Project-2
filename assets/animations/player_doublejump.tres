@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dkctdi2ggdnl5"]
+
+[ext_resource type="Texture2D" uid="uid://cxaeqx6myhlof" path="res://assets/player_doublejump_1.png" id="1_enf6v"]
+[ext_resource type="Texture2D" uid="uid://dg3i00gdaxcb0" path="res://assets/player_doublejump_0.png" id="2_iydx6"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_enf6v")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_iydx6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_iydx6")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_enf6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_iydx6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]

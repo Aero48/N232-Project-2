@@ -66,6 +66,7 @@ func early_jump_timeout():
 
 #Collection of jump functions for different conditions. Play different sounds and have different jump velocities
 func enemySquash():
+	doubleJumped = false
 	squashSound.play()
 	velocity.y = JUMP_VELOCITY * jumpVelMod
 	jumpTimeout = false
@@ -80,6 +81,7 @@ func jump():
 	jumpTimer.start()
 	
 func springJump():
+	doubleJumped = false
 	boingSound.play()
 	velocity.y = SPRING_VELOCITY * jumpVelMod
 	jumpTimeout = false
@@ -176,24 +178,44 @@ func changeEffect(effect):
 		currentEffect = effect
 		get_node("/root/GameController").currentEffect = effect
 		
-		if effect == 2:
-			groundAccelMod = -10
-			groundDecelMod = -10
-			airAccelMod = -10
-			speedMod = 100
-			jumpVelMod = 0
-		elif effect == 3:
-			groundAccelMod = -10
-			groundDecelMod = -10
-			airAccelMod = -10
-			speedMod = -75
-			jumpVelMod = 0.75
-		else:
-			groundAccelMod = 0
-			groundDecelMod = 0
-			airAccelMod = 0
-			speedMod = 0
-			jumpVelMod = 0
+		match effect:
+			0:
+				sprite.sprite_frames = load("res://assets/animations/player.tres")
+				groundAccelMod = 0
+				groundDecelMod = 0
+				airAccelMod = 0
+				speedMod = 0
+				jumpVelMod = 1
+			1:
+				sprite.sprite_frames = load("res://assets/animations/player_doublejump.tres")
+				groundAccelMod = 0
+				groundDecelMod = 0
+				airAccelMod = 0
+				speedMod = 0
+				jumpVelMod = 1
+			2:
+				groundAccelMod = -10
+				groundDecelMod = -10
+				airAccelMod = -10
+				speedMod = 100
+				jumpVelMod = 1
+				sprite.sprite_frames = load("res://assets/animations/player_skates.tres")
+			3:
+				sprite.sprite_frames = load("res://assets/animations/player_iron.tres")
+				groundAccelMod = -10
+				groundDecelMod = -10
+				airAccelMod = -10
+				speedMod = -75
+				jumpVelMod = 0.75
+			_:
+				sprite.sprite_frames = load("res://assets/animations/player.tres")
+				groundAccelMod = 0
+				groundDecelMod = 0
+				airAccelMod = 0
+				speedMod = 0
+				jumpVelMod = 1
+		sprite.play()
+		
 			
 	
 func _ready():

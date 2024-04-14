@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bs26463r6mapf"]
+
+[ext_resource type="Texture2D" uid="uid://eb1dh7ej2vio" path="res://assets/player_iron_1.png" id="1_d5mrl"]
+[ext_resource type="Texture2D" uid="uid://c61detylqgir2" path="res://assets/player_iron_0.png" id="2_unvg0"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d5mrl")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_unvg0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_unvg0")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d5mrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_unvg0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]

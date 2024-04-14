@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://mp2nnjd7n628"]
+
+[ext_resource type="Texture2D" uid="uid://cb731yuaom6oa" path="res://assets/player_skates_1.png" id="1_wboc7"]
+[ext_resource type="Texture2D" uid="uid://cyu3wa1vm0ud3" path="res://assets/player_skates_0.png" id="2_o13x2"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wboc7")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_o13x2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_o13x2")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wboc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o13x2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
