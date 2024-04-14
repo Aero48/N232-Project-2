@@ -1,6 +1,6 @@
 extends Node
 
-var currentEffect = 1
+var currentEffect = 0
 
 var playerEffects = [
 	{
