@@ -36,6 +36,7 @@ var groundAccelMod = 0
 var groundDecelMod = 0
 var airAccelMod = 0
 var speedMod = 0
+var jumpVelMod = 1
 
 #Variable used to determine whether or not to play sliding sound
 var isSliding = false
@@ -66,21 +67,21 @@ func early_jump_timeout():
 #Collection of jump functions for different conditions. Play different sounds and have different jump velocities
 func enemySquash():
 	squashSound.play()
-	velocity.y = JUMP_VELOCITY
+	velocity.y = JUMP_VELOCITY * jumpVelMod
 	jumpTimeout = false
 	#when player jumps, starts a timer that determines the maximum amount of time the player can hold jump for before gravity returns to normal
 	jumpTimer.start()
 	
 func jump():
 	jumpSound.play()
-	velocity.y = JUMP_VELOCITY
+	velocity.y = JUMP_VELOCITY * jumpVelMod
 	jumpTimeout = false
 	#when player jumps, starts a timer that determines the maximum amount of time the player can hold jump for before gravity returns to normal
 	jumpTimer.start()
 	
 func springJump():
 	boingSound.play()
-	velocity.y = SPRING_VELOCITY
+	velocity.y = SPRING_VELOCITY * jumpVelMod
 	jumpTimeout = false
 	#when player jumps, starts a timer that determines the maximum amount of time the player can hold jump for before gravity returns to normal
 	jumpTimer.start()
@@ -180,16 +181,19 @@ func changeEffect(effect):
 			groundDecelMod = -10
 			airAccelMod = -10
 			speedMod = 100
+			jumpVelMod = 0
 		elif effect == 3:
-			groundAccelMod = -17
-			groundDecelMod =0
-			airAccelMod = -17
-			speedMod = 0
+			groundAccelMod = -10
+			groundDecelMod = -10
+			airAccelMod = -10
+			speedMod = -75
+			jumpVelMod = 0.75
 		else:
 			groundAccelMod = 0
 			groundDecelMod = 0
 			airAccelMod = 0
 			speedMod = 0
+			jumpVelMod = 0
 			
 	
 func _ready():
