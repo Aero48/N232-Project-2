@@ -2,6 +2,8 @@ extends Node
 
 var currentEffect = 0
 
+var gamePaused = false
+
 var playerEffects = [
 	{
 		"name": "Normal",
@@ -40,3 +42,20 @@ func player_death():
 		get_node("/root/Platformer/Player").isAlive = false
 		await get_tree().create_timer(2).timeout
 		get_tree().reload_current_scene()
+		
+func pause():
+	gamePaused = true
+	print("pause")
+	get_node("/root/Platformer/PauseMenu").showMenu()
+	
+func unPause():
+	gamePaused = false
+	print("unpause")
+	get_node("/root/Platformer/PauseMenu").hideMenu()
+	
+func _input(event):
+	if event.is_action_pressed("pause"):
+		if gamePaused:
+			unPause()
+		else:
+			pause()

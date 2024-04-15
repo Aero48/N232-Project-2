@@ -89,7 +89,7 @@ func springJump():
 	jumpTimer.start()
 
 func _physics_process(delta):
-	if isAlive:
+	if isAlive and !get_node("/root/GameController").gamePaused:
 		# Add the gravity.
 		if not is_on_floor():
 			if velocity.y <= MAX_FALL_SPEED:

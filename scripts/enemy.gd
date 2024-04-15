@@ -25,7 +25,7 @@ func springJump():
 	velocity.y = SPRING_VELOCITY
 
 func _physics_process(delta):
-	if active:
+	if active and !get_node("/root/GameController").gamePaused:
 		#Makes enemy turn around when it collides with wall
 		if is_on_wall():
 			speed *= -1

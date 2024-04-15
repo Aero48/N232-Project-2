@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1ng2ckcwr8im"]
+[gd_scene load_steps=10 format=3 uid="uid://c1ng2ckcwr8im"]
 
 [ext_resource type="PackedScene" uid="uid://bpchbip3scbub" path="res://game_objects/grass_tiles.tscn" id="1_pew78"]
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_iksnt"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="6_1gggp"]
 [ext_resource type="PackedScene" uid="uid://dxobti50tir4t" path="res://game_objects/grass_bg.tscn" id="7_tpcd4"]
 [ext_resource type="PackedScene" uid="uid://cmwi7bg15vt7u" path="res://game_objects/enemy.tscn" id="8_8ucjm"]
+[ext_resource type="PackedScene" uid="uid://5qqlp3rikl5g" path="res://game_objects/pause_menu.tscn" id="9_c0bi6"]
 
 [node name="Platformer" type="Node2D"]
 
@@ -73,3 +74,5 @@ position = Vector2(2366, 382)
 
 [node name="BoundaryWall2" parent="." instance=ExtResource("6_1gggp")]
 position = Vector2(2584, 326)
+
+[node name="PauseMenu" parent="." instance=ExtResource("9_c0bi6")]
