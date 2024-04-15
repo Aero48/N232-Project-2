@@ -42,6 +42,7 @@ func _on_effects_btn_pressed():
 
 
 func _on_quit_btn_pressed():
+	get_node("/root/GameController").unPause()
 	get_tree().change_scene_to_file("res://levels/title.tscn")
 
 
