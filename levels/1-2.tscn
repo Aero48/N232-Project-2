@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0xmfn3gr1cip"]
+[gd_scene load_steps=11 format=3 uid="uid://d0xmfn3gr1cip"]
 
 [ext_resource type="TileSet" uid="uid://bfqp6mxmqt3x3" path="res://assets/grass_tileset.tres" id="1_82wa6"]
 [ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="2_8l2wp"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dxobti50tir4t" path="res://game_objects/grass_bg.tscn" id="7_1uflu"]
 [ext_resource type="PackedScene" uid="uid://cmwi7bg15vt7u" path="res://game_objects/enemy.tscn" id="8_55f1i"]
 [ext_resource type="PackedScene" uid="uid://cqtr71ud1n7ca" path="res://game_objects/spring.tscn" id="9_kki27"]
+[ext_resource type="PackedScene" uid="uid://5qqlp3rikl5g" path="res://game_objects/pause_menu.tscn" id="10_mjtpy"]
 
 [node name="Platformer" type="Node2D"]
 
@@ -89,3 +90,5 @@ position = Vector2(1998, 398)
 
 [node name="BoundaryWall2" parent="." instance=ExtResource("6_cs53i")]
 position = Vector2(2062, 341)
+
+[node name="PauseMenu" parent="." instance=ExtResource("10_mjtpy")]

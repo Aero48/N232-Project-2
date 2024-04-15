@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2jo3bfh074k2"]
+[gd_scene load_steps=11 format=3 uid="uid://c2jo3bfh074k2"]
 
 [ext_resource type="TileSet" uid="uid://bfqp6mxmqt3x3" path="res://assets/grass_tileset.tres" id="1_3eyl0"]
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_0ytqu"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cqtr71ud1n7ca" path="res://game_objects/spring.tscn" id="7_li10n"]
 [ext_resource type="PackedScene" uid="uid://dxobti50tir4t" path="res://game_objects/grass_bg.tscn" id="8_0b505"]
 [ext_resource type="PackedScene" uid="uid://bpgjxj01158r4" path="res://game_objects/coin.tscn" id="9_ig1vo"]
+[ext_resource type="PackedScene" uid="uid://5qqlp3rikl5g" path="res://game_objects/pause_menu.tscn" id="10_yd1b3"]
 
 [node name="Platformer" type="Node2D"]
 
@@ -74,3 +75,5 @@ position = Vector2(1123, 66)
 
 [node name="Coin8" parent="." instance=ExtResource("9_ig1vo")]
 position = Vector2(1386, 29)
+
+[node name="PauseMenu" parent="." instance=ExtResource("10_yd1b3")]

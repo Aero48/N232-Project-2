@@ -3,7 +3,12 @@ extends Node2D
 @export var startTimer: Timer
 @export var startSound: AudioStreamPlayer
 
+@export var startBtn: Button
+
 var gameStarted = false
+
+func _ready():
+	startBtn.grab_focus()
 
 func _on_start_btn_pressed():
 	if !gameStarted:

@@ -7,10 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://bl6rr6skldwx" path="res://assets/sounds/level_win.ogg" id="5_lyc0l"]
 [ext_resource type="Script" path="res://scripts/title_cam.gd" id="6_gv53r"]
 
-[node name="Title" type="Node2D" node_paths=PackedStringArray("startTimer", "startSound")]
+[node name="Title" type="Node2D" node_paths=PackedStringArray("startTimer", "startSound", "startBtn")]
 script = ExtResource("1_iskvm")
 startTimer = NodePath("StartTimer")
 startSound = NodePath("AudioStreamPlayer")
+startBtn = NodePath("CanvasLayer/Control/NinePatchRect/VBoxContainer/StartBtn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

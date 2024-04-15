@@ -54,7 +54,7 @@ func unPause():
 	get_node("/root/Platformer/PauseMenu").hideMenu()
 	
 func _input(event):
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") and get_node("/root/Platformer/PauseMenu") and !levelComplete and get_node("/root/Platformer/Player").isAlive:
 		if gamePaused:
 			unPause()
 		else:
