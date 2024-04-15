@@ -4,7 +4,11 @@ extends CanvasLayer
 @export var effects: NinePatchRect
 
 @export var effectsBtn: Button
+
 @export var normalBtn: Button
+@export var jumpBtn: Button
+@export var skatesBtn: Button
+@export var ironBtn: Button
 
 func showMenu():
 	print("showmenu")
@@ -19,6 +23,21 @@ func hideMenu():
 func _on_effects_btn_pressed():
 	main.hide()
 	effects.show()
+	if get_node("/root/GameController").playerEffects[1].collected:
+		jumpBtn.disabled = false
+	else:
+		jumpBtn.disabled = true
+		
+	if get_node("/root/GameController").playerEffects[2].collected:
+		skatesBtn.disabled = false
+	else:
+		skatesBtn.disabled = true
+		
+	if get_node("/root/GameController").playerEffects[3].collected:
+		ironBtn.disabled = false
+	else:
+		ironBtn.disabled = true
+		
 	normalBtn.grab_focus()
 
 

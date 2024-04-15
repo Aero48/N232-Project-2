@@ -4,13 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://jl8nj358snu4" path="res://assets/gui/title_rect.png" id="1_ix32j"]
 [ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="3_kkaob"]
 
-[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("main", "effects", "effectsBtn", "normalBtn")]
+[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("main", "effects", "effectsBtn", "normalBtn", "jumpBtn", "skatesBtn", "ironBtn")]
 visible = false
 script = ExtResource("1_isi2c")
 main = NodePath("Control/Main")
 effects = NodePath("Control/Effects")
 effectsBtn = NodePath("Control/Main/VBoxContainer/EffectsBtn")
 normalBtn = NodePath("Control/Effects/VBoxContainer/NormalBtn")
+jumpBtn = NodePath("Control/Effects/VBoxContainer/JumpBtn")
+skatesBtn = NodePath("Control/Effects/VBoxContainer/SkatesBtn")
+ironBtn = NodePath("Control/Effects/VBoxContainer/IronBtn")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
