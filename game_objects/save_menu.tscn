@@ -1,0 +1,122 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvqlcajc1e6ij"]
+
+[ext_resource type="Script" path="res://scripts/save_menu.gd" id="1_ybqwr"]
+[ext_resource type="Texture2D" uid="uid://jl8nj358snu4" path="res://assets/gui/title_rect.png" id="2_82t0n"]
+[ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="3_i18jt"]
+
+[node name="SaveMenu" type="CanvasLayer"]
+script = ExtResource("1_ybqwr")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Save" type="NinePatchRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.5
+offset_top = -95.5
+offset_right = 98.5
+offset_bottom = 141.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_82t0n")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Save"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -58.5
+offset_right = 77.0
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="File1Btn" type="Button" parent="Control/Save/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_i18jt")
+theme_override_font_sizes/font_size = 32
+text = "File 1"
+
+[node name="File2Btn" type="Button" parent="Control/Save/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_i18jt")
+theme_override_font_sizes/font_size = 32
+text = "File 2"
+
+[node name="File3Btn" type="Button" parent="Control/Save/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_i18jt")
+theme_override_font_sizes/font_size = 32
+text = "File 3"
+
+[node name="BackBtn" type="Button" parent="Control/Save"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -41.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 41.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_i18jt")
+text = "X"
+
+[node name="Title" type="NinePatchRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.5
+offset_top = -152.0
+offset_right = 98.5
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_82t0n")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Label" type="Label" parent="Control/Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -14.0
+offset_right = 88.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i18jt")
+theme_override_font_sizes/font_size = 30
+text = "Save Game?"
+
+[connection signal="pressed" from="Control/Save/VBoxContainer/File1Btn" to="." method="_on_file_1_btn_pressed"]
+[connection signal="pressed" from="Control/Save/VBoxContainer/File2Btn" to="." method="_on_file_2_btn_pressed"]
+[connection signal="pressed" from="Control/Save/VBoxContainer/File3Btn" to="." method="_on_file_3_btn_pressed"]
+[connection signal="pressed" from="Control/Save/BackBtn" to="." method="_on_back_btn_pressed"]

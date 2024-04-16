@@ -11,15 +11,15 @@ var playerEffects = [
 	},
 	{
 		"name": "Double Jump",
-		"collected": true
+		"collected": false
 	},
 	{
 		"name": "Skates",
-		"collected": true
+		"collected": false
 	},
 	{
 		"name": "Iron",
-		"collected": true
+		"collected": false
 	}
 ]
 
@@ -59,3 +59,26 @@ func _input(event):
 			unPause()
 		else:
 			pause()
+			
+func saveData():
+	var save_dict = {
+		"effects": playerEffects
+	}
+	
+	return JSON.stringify(save_dict)
+	
+func saveGame(saveNum):
+	var file = FileAccess.open("user://save_game_"+str(saveNum)+".txt", FileAccess.WRITE)
+	file.store_string(saveData())
+	print("Game saved to file " + str(saveNum) + ". Data saved: " + saveData())
+	
+func loadGame(saveNum):
+	var file = FileAccess.open("user://save_game_"+str(saveNum)+".txt", FileAccess.READ)
+	var content = file.get_as_text()
+	var load_dict = JSON.parse_string(content)
+	print(load_dict)
+	return load_dict
+	
+func loadData(saveData):
+	playerEffects = saveData.effects
+
