@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://jl8nj358snu4" path="res://assets/gui/title_rect.png" id="2_82t0n"]
 [ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="3_i18jt"]
 
-[node name="SaveMenu" type="CanvasLayer"]
+[node name="SaveMenu" type="CanvasLayer" node_paths=PackedStringArray("file1Btn")]
+visible = false
 script = ExtResource("1_ybqwr")
+file1Btn = NodePath("Control/Save/VBoxContainer/File1Btn")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

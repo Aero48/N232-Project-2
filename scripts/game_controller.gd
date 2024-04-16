@@ -43,6 +43,13 @@ func player_death():
 		await get_tree().create_timer(2).timeout
 		get_tree().reload_current_scene()
 		
+func saveMenu():
+	gamePaused = true
+	get_node("/root/Platformer/SaveMenu").showMenu()
+func closeSaveMenu():
+	gamePaused = false
+	get_node("/root/Platformer/SaveMenu").hideMenu()
+		
 func pause():
 	gamePaused = true
 	print("pause")
