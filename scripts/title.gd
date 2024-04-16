@@ -39,6 +39,13 @@ func startGame():
 	startTimer.start()
 	await startTimer.timeout
 	get_node("/root/GameController").change_scene("1-1")
+	
+func startGameHub():
+	gameStarted = true
+	startSound.play()
+	startTimer.start()
+	await startTimer.timeout
+	get_node("/root/GameController").change_scene("tunnel")
 
 func _on_start_btn_pressed():
 	if !gameStarted:
@@ -98,37 +105,32 @@ func _on_back_btn_pressed():
 		mainMenu.show()
 		loadMenu.hide()
 		startBtn.grab_focus()
+		
+func startFromLoadedFile(fileNum):
+	if deleteSaveMode:
+		var dir = DirAccess.open("user://")
+		dir.remove("save_game_"+str(fileNum)+".txt")
+		initLoadMenu()
+	else:
+		if !gameStarted:
+			match fileNum:
+				1:
+					get_node("/root/GameController").loadData(file1)
+				2:
+					get_node("/root/GameController").loadData(file2)
+				3:
+					get_node("/root/GameController").loadData(file3)
+			startGameHub()
 
 
 func _on_file_1_btn_pressed():
-	if deleteSaveMode:
-		var dir = DirAccess.open("user://")
-		dir.remove("save_game_1.txt")
-		initLoadMenu()
-	else:
-		if !gameStarted:
-			get_node("/root/GameController").loadData(file1)
-			startGame()
+	startFromLoadedFile(1)
 
 func _on_file_2_btn_pressed():
-	if deleteSaveMode:
-		var dir = DirAccess.open("user://")
-		dir.remove("save_game_2.txt")
-		initLoadMenu()
-	else:
-		if !gameStarted:
-			get_node("/root/GameController").loadData(file2)
-			startGame()
+	startFromLoadedFile(2)
 	
 func _on_file_3_btn_pressed():
-	if deleteSaveMode:
-		var dir = DirAccess.open("user://")
-		dir.remove("save_game_3.txt")
-		initLoadMenu()
-	else:
-		if !gameStarted:
-			get_node("/root/GameController").loadData(file3)
-			startGame()
+	startFromLoadedFile(3)
 
 
 func _on_delete_mode_toggle_pressed():
