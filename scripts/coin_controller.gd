@@ -27,7 +27,7 @@ func coin_collected():
 		get_node("/root/GameController").levelComplete = true
 		nextLevelTimer.start()
 		await nextLevelTimer.timeout
-		get_node("/root/GameController").change_scene("1-"+str(level+1))
+		get_node("/root/GameController").change_scene("1-"+str(level+1), true)
 	else:
 		coinSound.play()
 		

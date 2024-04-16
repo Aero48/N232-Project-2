@@ -38,14 +38,14 @@ func startGame():
 	startSound.play()
 	startTimer.start()
 	await startTimer.timeout
-	get_node("/root/GameController").change_scene("1-1")
+	get_node("/root/GameController").change_scene("1-1", true)
 	
 func startGameHub():
 	gameStarted = true
 	startSound.play()
 	startTimer.start()
 	await startTimer.timeout
-	get_node("/root/GameController").change_scene("tunnel")
+	get_node("/root/GameController").change_scene("tunnel", true)
 
 func _on_start_btn_pressed():
 	if !gameStarted:

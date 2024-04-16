@@ -4,6 +4,9 @@ var currentEffect = 0
 
 var gamePaused = false
 
+#If a level has a title card before it, this allows the level to be loaded after the card
+var nextLevel
+
 var playerEffects = [
 	{
 		"name": "Normal",
@@ -27,9 +30,13 @@ var playerEffects = [
 var levelComplete = false
 
 #Makes sure next level exists before starting it
-func change_scene(level):
+func change_scene(level, hasTitleCard):
 	if ResourceLoader.exists("res://levels/"+level+".tscn"):
-		get_tree().change_scene_to_file("res://levels/"+level+".tscn")
+		if hasTitleCard:
+			nextLevel = level
+			get_tree().change_scene_to_file("res://levels/level_title_card.tscn")
+		else:
+			get_tree().change_scene_to_file("res://levels/"+level+".tscn")
 	else:
 		get_tree().change_scene_to_file("res://levels/title.tscn")
 
@@ -41,7 +48,7 @@ func player_death():
 		get_node("/root/Platformer/Player").deathSound.play()
 		get_node("/root/Platformer/Player").isAlive = false
 		await get_tree().create_timer(2).timeout
-		get_tree().reload_current_scene()
+		change_scene(nextLevel, true)
 		
 func saveMenu():
 	gamePaused = true
