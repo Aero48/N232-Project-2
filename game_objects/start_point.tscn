@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dds8g1n1tbviw"]
+
+[ext_resource type="Script" path="res://scripts/start_point.gd" id="1_amc3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4koc"]
+
+[node name="StartPoint" type="Area2D" groups=["start_point"]]
+script = ExtResource("1_amc3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i4koc")

@@ -4,6 +4,7 @@ extends Node2D
 @export var levelLabel: Label
 
 var nextLevel
+var nextLevelStartPoint
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

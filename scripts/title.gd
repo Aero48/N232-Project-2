@@ -45,7 +45,8 @@ func startGameHub():
 	startSound.play()
 	startTimer.start()
 	await startTimer.timeout
-	get_node("/root/GameController").change_scene("tunnel", true)
+	get_node("/root/GameController").hubVisited = true
+	get_node("/root/GameController").change_scene("tunnel", true, "save_point")
 
 func _on_start_btn_pressed():
 	if !gameStarted:

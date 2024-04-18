@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://btap55qs88qr0"]
+
+[ext_resource type="Texture2D" uid="uid://cux2k8n3txity" path="res://assets/backgrounds/black_sky.png" id="1_51gtd"]
+
+[node name="GrassBg" type="ParallaxBackground"]
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_51gtd")
+centered = false

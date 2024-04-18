@@ -4,6 +4,7 @@ extends CanvasLayer
 @export var effects: NinePatchRect
 
 @export var effectsBtn: Button
+@export var hubBtn: Button
 
 @export var normalBtn: Button
 @export var jumpBtn: Button
@@ -16,6 +17,8 @@ func showMenu():
 	main.show()
 	effects.hide()
 	effectsBtn.grab_focus()
+	if get_node("/root/GameController").hubVisited:	
+		hubBtn.disabled = false
 	
 func hideMenu():
 	hide()
@@ -74,3 +77,8 @@ func _on_skates_btn_pressed():
 func _on_iron_btn_pressed():
 	get_node("/root/Platformer/Player").changeEffect(3)
 	get_node("/root/GameController").unPause()
+
+
+func _on_hub_btn_pressed():
+	get_node("/root/GameController").unPause()
+	get_node("/root/GameController").change_scene("hub", true)

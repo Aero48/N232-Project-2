@@ -4,8 +4,14 @@ var currentEffect = 0
 
 var gamePaused = false
 
+#variable for if the hub has been visited. makes the hub button in the pause menu work
+var hubVisited = false
+
 #If a level has a title card before it, this allows the level to be loaded after the card
 var nextLevel
+
+#refers to the startpoint the player originated from in the current scene
+var levelStartPoint
 
 var playerEffects = [
 	{
@@ -29,9 +35,15 @@ var playerEffects = [
 #Certain things disable themselves when level is completed
 var levelComplete = false
 
+func spawnPlayer(key, position):
+	if key == levelStartPoint:
+		get_node("/root/Platformer/Player").position = position
+	
+
 #Makes sure next level exists before starting it
-func change_scene(level, hasTitleCard):
+func change_scene(level, hasTitleCard, startKey = null):
 	if ResourceLoader.exists("res://levels/"+level+".tscn"):
+		levelStartPoint = startKey
 		if hasTitleCard:
 			nextLevel = level
 			get_tree().change_scene_to_file("res://levels/level_title_card.tscn")
