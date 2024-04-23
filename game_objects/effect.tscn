@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://8uwtqakntuyf"]
+
+[ext_resource type="Texture2D" uid="uid://d0gq301a5tg7d" path="res://assets/effect_iron.png" id="1_4kqlo"]
+[ext_resource type="Script" path="res://scripts/effect.gd" id="1_476it"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqnnq"]
+
+[sub_resource type="Animation" id="Animation_mwp1k"]
+resource_name = "effect_hover"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, 5), Vector2(0, -5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j7kk8"]
+_data = {
+"effect_hover": SubResource("Animation_mwp1k")
+}
+
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("spriteNode")]
+script = ExtResource("1_476it")
+spriteNode = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dqnnq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_4kqlo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_j7kk8")
+}
+autoplay = "effect_hover"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

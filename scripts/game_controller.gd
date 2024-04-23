@@ -107,4 +107,15 @@ func loadGame(saveNum):
 	
 func loadData(saveData):
 	playerEffects = saveData.effects
-
+	
+func collectEffect(effect):
+	for playerEffect in playerEffects:
+		if playerEffect.name == effect:
+			playerEffect.collected = true
+			
+func checkEffect(effect):
+	for playerEffect in playerEffects:
+		if playerEffect.name == effect and playerEffect.collected:
+			return true
+			
+	return false

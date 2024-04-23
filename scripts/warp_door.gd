@@ -8,11 +8,13 @@ extends Area2D
 var playerInRange = false
 
 func _input(event):
-	if event.is_action_pressed("up") and playerInRange:
+	if event.is_action_pressed("up") and playerInRange and !get_node("/root/GameController").gamePaused:
 		get_node("/root/GameController").change_scene(targetLevel, targetHasTitleCard, targetStartPoint)
 
 func _on_body_entered(body):
-	playerInRange = true
+	if body.is_in_group("player"):
+		playerInRange = true
 
 func _on_body_exited(body):
-	playerInRange = false
+	if body.is_in_group("player"):
+		playerInRange = false
