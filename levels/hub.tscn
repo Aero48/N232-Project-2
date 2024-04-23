@@ -48,3 +48,13 @@ targetHasTitleCard = true
 [node name="StartPoint2" parent="." instance=ExtResource("7_qfodc")]
 position = Vector2(333, 134)
 key = "from_ascent"
+
+[node name="WarpDoor4" parent="." instance=ExtResource("6_miv0u")]
+position = Vector2(243, 98)
+targetLevel = "fortress"
+targetStartPoint = "from_hub"
+targetHasTitleCard = true
+
+[node name="StartPoint3" parent="." instance=ExtResource("7_qfodc")]
+position = Vector2(243, 98)
+key = "from_fortress"
