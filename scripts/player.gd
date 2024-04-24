@@ -20,6 +20,12 @@ extends CharacterBody2D
 #Camera
 @export var camera: Camera2D
 
+#Press E Label
+@export var eLabel: Label
+
+#Up Indicator
+@export var upIndicator: Sprite2D 
+
 #Player horizontal acceleration while in air
 const AIR_ACCEL = 20.0
 #Player horizontal acceleration while on the ground
@@ -61,6 +67,9 @@ var currentEffect = 0
 
 #Determines whether a player has already used their double jump (applies only to the double jump effect)
 var doubleJumped = false
+
+#True when player is within range of doorway (used to prevent screen scrolling)
+var isInDoorway = false
 
 # Runs when player stops holding the jump button, or starts moving down
 func early_jump_timeout():

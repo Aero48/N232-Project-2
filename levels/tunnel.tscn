@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://07hapna56t5a" path="res://game_objects/save_pillar.tscn" id="5_nonw6"]
 [ext_resource type="PackedScene" uid="uid://dds8g1n1tbviw" path="res://game_objects/start_point.tscn" id="6_uhr0e"]
 [ext_resource type="PackedScene" uid="uid://cagmtgj135uk" path="res://game_objects/warp_door.tscn" id="8_616qk"]
-[ext_resource type="PackedScene" uid="uid://btap55qs88qr0" path="res://game_objects/dark_bg.tscn" id="8_vrki3"]
+[ext_resource type="PackedScene" uid="uid://buv0srhknrxgp" path="res://game_objects/factory_bg.tscn" id="8_lq7x1"]
 
 [node name="Platformer" type="Node2D"]
 
@@ -31,8 +31,6 @@ tilemap = NodePath("../TileMap")
 position = Vector2(938, 260)
 key = "save_point"
 
-[node name="GrassBg" parent="." instance=ExtResource("8_vrki3")]
-
 [node name="HubStartPoint" parent="." instance=ExtResource("6_uhr0e")]
 position = Vector2(963, 260)
 key = "from_hub"
@@ -40,3 +38,5 @@ key = "from_hub"
 [node name="HubWarpDoor" parent="." instance=ExtResource("8_616qk")]
 position = Vector2(963, 260)
 targetLevel = "hub"
+
+[node name="FactoryBg" parent="." instance=ExtResource("8_lq7x1")]

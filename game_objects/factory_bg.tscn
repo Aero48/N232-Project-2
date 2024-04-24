@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://buv0srhknrxgp"]
+
+[ext_resource type="Texture2D" uid="uid://cux2k8n3txity" path="res://assets/backgrounds/black_sky.png" id="1_tw0h3"]
+[ext_resource type="Texture2D" uid="uid://ctqmt5emwp5jy" path="res://assets/backgrounds/metal_far.png" id="2_cs3vy"]
+[ext_resource type="Texture2D" uid="uid://cxete7rs515ta" path="res://assets/backgrounds/metal_close.png" id="3_tu876"]
+
+[node name="FactoryBg" type="ParallaxBackground"]
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_tw0h3")
+centered = false
+
+[node name="Far" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(480, 270)
+
+[node name="Sprite2D" type="Sprite2D" parent="Far"]
+texture = ExtResource("2_cs3vy")
+centered = false
+
+[node name="Close" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(480, 270)
+
+[node name="Sprite2D" type="Sprite2D" parent="Close"]
+texture = ExtResource("3_tu876")
+centered = false

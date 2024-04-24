@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c381uru21milu"]
+[gd_scene load_steps=14 format=3 uid="uid://c381uru21milu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_clcy5"]
 [ext_resource type="Texture2D" uid="uid://cicdujygmnrya" path="res://assets/character_0001.png" id="2_l2p7a"]
@@ -10,10 +10,12 @@
 [ext_resource type="AudioStream" uid="uid://detxj55rn0wxr" path="res://assets/sounds/hit.ogg" id="8_xpycq"]
 [ext_resource type="AudioStream" uid="uid://c0nb8gj60qeoc" path="res://assets/sounds/boing.ogg" id="9_frt5q"]
 [ext_resource type="AudioStream" uid="uid://bvlqi6gvcg4k" path="res://assets/sounds/death.ogg" id="10_bikru"]
+[ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="11_m48k8"]
+[ext_resource type="Texture2D" uid="uid://ruv5woabqjpb" path="res://assets/up_indicator.png" id="12_38xs1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hnog"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite", "jumpSound", "slideSound", "squashSound", "hitSound", "boingSound", "deathSound", "camera") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite", "jumpSound", "slideSound", "squashSound", "hitSound", "boingSound", "deathSound", "camera", "eLabel", "upIndicator") groups=["player"]]
 script = ExtResource("1_clcy5")
 jumpTimer = NodePath("JumpTimer")
 sprite = NodePath("AnimatedSprite2D")
@@ -24,6 +26,8 @@ hitSound = NodePath("HeadHit")
 boingSound = NodePath("Boing")
 deathSound = NodePath("Death")
 camera = NodePath("FollowCam")
+eLabel = NodePath("E")
+upIndicator = NodePath("UpIndicator")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -68,5 +72,20 @@ stream = ExtResource("9_frt5q")
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_bikru")
+
+[node name="E" type="Label" parent="."]
+visible = false
+offset_left = 11.0
+offset_top = -31.0
+offset_right = 51.0
+offset_bottom = -8.0
+theme_override_fonts/font = ExtResource("11_m48k8")
+theme_override_font_sizes/font_size = 20
+text = "E"
+
+[node name="UpIndicator" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -22)
+texture = ExtResource("12_38xs1")
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

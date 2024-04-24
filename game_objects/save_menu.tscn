@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvqlcajc1e6ij"]
+[gd_scene load_steps=5 format=3 uid="uid://bvqlcajc1e6ij"]
 
 [ext_resource type="Script" path="res://scripts/save_menu.gd" id="1_ybqwr"]
 [ext_resource type="Texture2D" uid="uid://jl8nj358snu4" path="res://assets/gui/title_rect.png" id="2_82t0n"]
 [ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="3_i18jt"]
+[ext_resource type="AudioStream" uid="uid://cjjovp2ciq5ot" path="res://assets/sounds/coin.ogg" id="4_u6vtk"]
 
-[node name="SaveMenu" type="CanvasLayer" node_paths=PackedStringArray("file1Btn")]
+[node name="SaveMenu" type="CanvasLayer" node_paths=PackedStringArray("file1Btn", "yesSound")]
 visible = false
 script = ExtResource("1_ybqwr")
 file1Btn = NodePath("Control/Save/VBoxContainer/File1Btn")
+yesSound = NodePath("SaveSuccess")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -117,6 +119,9 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_i18jt")
 theme_override_font_sizes/font_size = 30
 text = "Save Game?"
+
+[node name="SaveSuccess" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_u6vtk")
 
 [connection signal="pressed" from="Control/Save/VBoxContainer/File1Btn" to="." method="_on_file_1_btn_pressed"]
 [connection signal="pressed" from="Control/Save/VBoxContainer/File2Btn" to="." method="_on_file_2_btn_pressed"]

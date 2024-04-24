@@ -10,11 +10,12 @@ func _ready():
 	limit_right = worldSizeInPixels.x
 	limit_bottom = worldSizeInPixels.y
 	
-func _process(delta):
-	if Input.is_action_pressed("up"):
-		offset.y = move_toward(offset.y, -maxOffset, 100 * delta)
-	elif Input.is_action_pressed("down"):
-		offset.y = move_toward(offset.y, maxOffset, 100 * delta)
-	else:
-		offset.y = move_toward(offset.y, 0, 100*delta)
+#Camera control disabled due to lots of bugs
+#func _process(delta):
+	#if Input.is_action_pressed("up") and !player.isInDoorway:
+		#offset.y = move_toward(offset.y, -maxOffset, 100 * delta)
+	#elif Input.is_action_pressed("down"):
+		#offset.y = move_toward(offset.y, maxOffset, 100 * delta)
+	#else:
+		#offset.y = move_toward(offset.y, 0, 100*delta)
 	

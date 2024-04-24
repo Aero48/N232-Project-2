@@ -3,9 +3,9 @@
 [ext_resource type="TileSet" uid="uid://bhsklgymwhund" path="res://assets/factory_tileset.tres" id="1_3nemi"]
 [ext_resource type="Script" path="res://scripts/hub.gd" id="1_f5a7v"]
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_tiihy"]
-[ext_resource type="PackedScene" uid="uid://btap55qs88qr0" path="res://game_objects/dark_bg.tscn" id="3_yfvu8"]
 [ext_resource type="PackedScene" uid="uid://5qqlp3rikl5g" path="res://game_objects/pause_menu.tscn" id="4_td3mk"]
 [ext_resource type="PackedScene" uid="uid://cagmtgj135uk" path="res://game_objects/warp_door.tscn" id="6_miv0u"]
+[ext_resource type="PackedScene" uid="uid://buv0srhknrxgp" path="res://game_objects/factory_bg.tscn" id="7_60chy"]
 [ext_resource type="PackedScene" uid="uid://dds8g1n1tbviw" path="res://game_objects/start_point.tscn" id="7_qfodc"]
 
 [node name="Platformer" type="Node2D"]
@@ -19,8 +19,6 @@ layer_0/tile_data = PackedInt32Array(786435, 131072, 1, 786436, 131072, 1, 78643
 [node name="Player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("2_tiihy")]
 position = Vector2(243, 206)
 tilemap = NodePath("../TileMap")
-
-[node name="GrassBg" parent="." instance=ExtResource("3_yfvu8")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_td3mk")]
 
@@ -58,3 +56,5 @@ targetHasTitleCard = true
 [node name="StartPoint3" parent="." instance=ExtResource("7_qfodc")]
 position = Vector2(243, 98)
 key = "from_fortress"
+
+[node name="FactoryBg" parent="." instance=ExtResource("7_60chy")]

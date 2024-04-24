@@ -14,7 +14,11 @@ func _input(event):
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		playerInRange = true
+		body.isInDoorway = true
+		body.upIndicator.show()
 
 func _on_body_exited(body):
 	if body.is_in_group("player"):
 		playerInRange = false
+		body.isInDoorway = false
+		body.upIndicator.hide()
