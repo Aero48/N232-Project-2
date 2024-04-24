@@ -3,12 +3,12 @@
 [ext_resource type="TileSet" uid="uid://bfqp6mxmqt3x3" path="res://assets/grass_tileset.tres" id="1_1sbwg"]
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_lmv64"]
 [ext_resource type="PackedScene" uid="uid://cqtr71ud1n7ca" path="res://game_objects/spring.tscn" id="3_jb6ol"]
-[ext_resource type="PackedScene" uid="uid://cnjy3rnnr8rvh" path="res://game_objects/sky_bg.tscn" id="4_blh1b"]
 [ext_resource type="PackedScene" uid="uid://5qqlp3rikl5g" path="res://game_objects/pause_menu.tscn" id="5_wrq3h"]
 [ext_resource type="PackedScene" uid="uid://8uwtqakntuyf" path="res://game_objects/effect.tscn" id="6_23am3"]
 [ext_resource type="Texture2D" uid="uid://d0gq301a5tg7d" path="res://assets/effect_iron.png" id="7_8l8no"]
 [ext_resource type="TileSet" uid="uid://bhsklgymwhund" path="res://assets/factory_tileset.tres" id="7_hdho1"]
 [ext_resource type="PackedScene" uid="uid://dds8g1n1tbviw" path="res://game_objects/start_point.tscn" id="9_np8y4"]
+[ext_resource type="PackedScene" uid="uid://qmyg3rah12im" path="res://game_objects/tall_hills_bg.tscn" id="10_vl33l"]
 [ext_resource type="PackedScene" uid="uid://cagmtgj135uk" path="res://game_objects/warp_door.tscn" id="10_yjiou"]
 
 [node name="Platformer" type="Node2D"]
@@ -20,8 +20,6 @@ layer_0/tile_data = PackedInt32Array(3473408, 65536, 1, 3538944, 65536, 6, 36044
 
 [node name="Spring" parent="." instance=ExtResource("3_jb6ol")]
 position = Vector2(243, 423)
-
-[node name="GrassBg" parent="." instance=ExtResource("4_blh1b")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_wrq3h")]
 
@@ -48,3 +46,5 @@ position = Vector2(153, 944)
 targetLevel = "hub"
 targetStartPoint = "from_ascent"
 targetHasTitleCard = true
+
+[node name="GrassBg" parent="." instance=ExtResource("10_vl33l")]
