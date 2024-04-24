@@ -13,7 +13,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hnog"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite", "jumpSound", "slideSound", "squashSound", "hitSound", "boingSound", "deathSound") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpTimer", "sprite", "jumpSound", "slideSound", "squashSound", "hitSound", "boingSound", "deathSound", "camera") groups=["player"]]
 script = ExtResource("1_clcy5")
 jumpTimer = NodePath("JumpTimer")
 sprite = NodePath("AnimatedSprite2D")
@@ -23,6 +23,7 @@ squashSound = NodePath("SquashSound")
 hitSound = NodePath("HeadHit")
 boingSound = NodePath("Boing")
 deathSound = NodePath("Death")
+camera = NodePath("FollowCam")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

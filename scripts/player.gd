@@ -17,6 +17,9 @@ extends CharacterBody2D
 @export var boingSound: AudioStreamPlayer
 @export var deathSound: AudioStreamPlayer
 
+#Camera
+@export var camera: Camera2D
+
 #Player horizontal acceleration while in air
 const AIR_ACCEL = 20.0
 #Player horizontal acceleration while on the ground

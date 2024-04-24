@@ -1,4 +1,5 @@
 extends Camera2D
+var maxOffset = 60
 
 func _ready():
 	#Automatically sets the camera boundaries based on tilemap size. Doesn't work super well honestly
@@ -8,4 +9,12 @@ func _ready():
 	var worldSizeInPixels = mapRect.size * tileSize
 	limit_right = worldSizeInPixels.x
 	limit_bottom = worldSizeInPixels.y
+	
+func _process(delta):
+	if Input.is_action_pressed("up"):
+		offset.y = move_toward(offset.y, -maxOffset, 100 * delta)
+	elif Input.is_action_pressed("down"):
+		offset.y = move_toward(offset.y, maxOffset, 100 * delta)
+	else:
+		offset.y = move_toward(offset.y, 0, 100*delta)
 	
