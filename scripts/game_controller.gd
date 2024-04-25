@@ -50,7 +50,7 @@ func change_scene(level, hasTitleCard, startKey = null):
 		else:
 			get_tree().change_scene_to_file("res://levels/"+level+".tscn")
 	else:
-		get_tree().change_scene_to_file("res://levels/title.tscn")
+		get_tree().change_scene_to_file("res://levels/temp.tscn")
 
 func player_death():
 	#Players cannot die after collecting the last coin in a level

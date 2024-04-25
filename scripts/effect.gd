@@ -17,11 +17,13 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
-		var effectsCounter = 0
-		for effect in get_node("/root/GameController").playerEffects:
-			if effect.collected:
-				effectsCounter += 1
-		if effectsCounter < 2:
-			pass
-		get_node("/root/GameController").collectEffect(effectName)
-		queue_free()
+		#var effectsCounter = 0
+		#for effect in get_node("/root/GameController").playerEffects:
+			#if effect.collected:
+				#effectsCounter += 1
+		#if effectsCounter < 2:
+			#effectMessage.messageOpen()
+		#else:
+			#get_node("/root/GameController").collectEffect(effectName)
+			#queue_free()
+		effectMessage.messageOpen()

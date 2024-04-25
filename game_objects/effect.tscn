@@ -47,10 +47,11 @@ libraries = {
 }
 autoplay = "effect_hover"
 
-[node name="EffectMessage" type="CanvasLayer" parent="." node_paths=PackedStringArray("backBtn")]
+[node name="EffectMessage" type="CanvasLayer" parent="." node_paths=PackedStringArray("backBtn", "effectBase")]
 visible = false
 script = ExtResource("3_lpwfx")
 backBtn = NodePath("Control/Main/BackBtn")
+effectBase = NodePath("..")
 
 [node name="Control" type="Control" parent="EffectMessage"]
 layout_mode = 3
@@ -107,7 +108,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_ck05t")
 theme_override_font_sizes/font_size = 24
-text = "You have collectd a new effect! Pause the game to select it."
+text = "You have collected a new effect! Pause the game to select it."
 autowrap_mode = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="pressed" from="EffectMessage/Control/Main/BackBtn" to="EffectMessage" method="_on_back_btn_pressed"]

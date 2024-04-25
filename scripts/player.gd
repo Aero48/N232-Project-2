@@ -155,18 +155,6 @@ func _physics_process(delta):
 			else:
 				velocity.x = move_toward(velocity.x, 0, (AIR_ACCEL+airAccelMod)*delta*60)
 		move_and_slide()
-
-		# Play certain animations depending on the scenario
-		if is_on_floor() and velocity.x != 0:
-			#Animation plays at different speed depending on velocity
-			sprite.speed_scale = abs(velocity.x) / SPEED
-			sprite.animation = "walk"
-		elif is_on_floor() and velocity.x == 0:
-			sprite.animation = "idle"
-		elif !is_on_floor() and velocity.y < 0:
-			sprite.animation = "jump"
-		else:
-			sprite.animation = "fall"
 	
 		#Really zany code just to play a slide sound when player is sliding.
 		if ((Input.is_action_pressed("left") && velocity.x > 60) or (Input.is_action_pressed("right") && velocity.x < -60)) && is_on_floor() && !isSliding:
@@ -179,6 +167,21 @@ func _physics_process(delta):
 		#Bonk!
 		if is_on_ceiling():
 			hitSound.play()
+	
+	# Play certain animations depending on the scenario
+	if !get_node("/root/GameController").gamePaused:
+		if is_on_floor() and velocity.x != 0:
+		#Animation plays at different speed depending on velocity
+			sprite.speed_scale = abs(velocity.x) / SPEED
+			sprite.animation = "walk"
+		elif is_on_floor() and velocity.x == 0:
+			sprite.animation = "idle"
+		elif !is_on_floor() and velocity.y < 0:
+			sprite.animation = "jump"
+		else:
+			sprite.animation = "fall"
+	else:
+		sprite.animation = "idle"
 
 #Disables the lower gravity when holding jump button
 func _on_jump_timer_timeout():
@@ -209,7 +212,7 @@ func changeEffect(effect):
 				groundAccelMod = -10
 				groundDecelMod = -10
 				airAccelMod = -10
-				speedMod = 100
+				speedMod = 200
 				jumpVelMod = 1
 				sprite.sprite_frames = load("res://assets/animations/player_skates.tres")
 			3:
