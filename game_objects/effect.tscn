@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://8uwtqakntuyf"]
+[gd_scene load_steps=9 format=3 uid="uid://8uwtqakntuyf"]
 
 [ext_resource type="Texture2D" uid="uid://d0gq301a5tg7d" path="res://assets/effect_iron.png" id="1_4kqlo"]
 [ext_resource type="Script" path="res://scripts/effect.gd" id="1_476it"]
+[ext_resource type="Script" path="res://scripts/effect_message.gd" id="3_lpwfx"]
+[ext_resource type="Texture2D" uid="uid://jl8nj358snu4" path="res://assets/gui/title_rect.png" id="4_by5yf"]
+[ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="5_ck05t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqnnq"]
 
@@ -26,9 +29,10 @@ _data = {
 "effect_hover": SubResource("Animation_mwp1k")
 }
 
-[node name="Area2D" type="Area2D" node_paths=PackedStringArray("spriteNode")]
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("spriteNode", "effectMessage")]
 script = ExtResource("1_476it")
 spriteNode = NodePath("Sprite2D")
+effectMessage = NodePath("EffectMessage")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dqnnq")
@@ -42,5 +46,68 @@ libraries = {
 "": SubResource("AnimationLibrary_j7kk8")
 }
 autoplay = "effect_hover"
+
+[node name="EffectMessage" type="CanvasLayer" parent="." node_paths=PackedStringArray("backBtn")]
+visible = false
+script = ExtResource("3_lpwfx")
+backBtn = NodePath("Control/Main/BackBtn")
+
+[node name="Control" type="Control" parent="EffectMessage"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="NinePatchRect" parent="EffectMessage/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -81.0
+offset_right = 195.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_by5yf")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="BackBtn" type="Button" parent="EffectMessage/Control/Main"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -41.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 41.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("5_ck05t")
+text = "X"
+
+[node name="Label" type="Label" parent="EffectMessage/Control/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = -31.0
+offset_right = 158.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_ck05t")
+theme_override_font_sizes/font_size = 24
+text = "You have collectd a new effect! Pause the game to select it."
+autowrap_mode = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
