@@ -2,6 +2,8 @@ extends Node2D
 
 @export var startTimer: Timer
 @export var startSound: AudioStreamPlayer
+@export var selectSound: AudioStreamPlayer
+@export var backSound: AudioStreamPlayer
 
 @export var startBtn: Button
 
@@ -55,6 +57,7 @@ func _on_start_btn_pressed():
 
 func _on_quit_btn_pressed():
 	if !gameStarted:
+		backSound.play()
 		get_tree().quit()
 		
 
@@ -98,17 +101,20 @@ func initLoadMenu():
 
 func _on_load_btn_pressed():
 	if !gameStarted:
+		selectSound.play()
 		initLoadMenu()
 
 
 func _on_back_btn_pressed():
 	if !gameStarted:
+		backSound.play()
 		mainMenu.show()
 		loadMenu.hide()
 		startBtn.grab_focus()
 		
 func startFromLoadedFile(fileNum):
 	if deleteSaveMode:
+		backSound.play()
 		var dir = DirAccess.open("user://")
 		dir.remove("save_game_"+str(fileNum)+".txt")
 		initLoadMenu()

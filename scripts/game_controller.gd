@@ -13,6 +13,9 @@ var nextLevel
 #refers to the startpoint the player originated from in the current scene
 var levelStartPoint
 
+#preload dead player node
+const DEADPLAYER = preload("res://game_objects/deadPlayer.tscn")
+
 var playerEffects = [
 	{
 		"name": "Normal",
@@ -38,6 +41,31 @@ var levelComplete = false
 func spawnPlayer(key, position):
 	if key == levelStartPoint:
 		get_node("/root/Platformer/Player").position = position
+		
+
+func createDeadPlayer():
+	var deadPlayerInstance = DEADPLAYER.instantiate()
+	deadPlayerInstance.position = get_node("/root/Platformer/Player").position
+	deadPlayerInstance.sprite.flip_h = get_node("/root/Platformer/Player").sprite.flip_h
+	if get_node("/root/Platformer/Player").velocity.x > 0:
+		deadPlayerInstance.direction = -1
+	elif get_node("/root/Platformer/Player").velocity.x < 0:
+		deadPlayerInstance.direction = 1
+	else:
+		deadPlayerInstance.direction = 0
+			
+	match get_node("/root/Platformer/Player").currentEffect:
+		0: 
+			deadPlayerInstance.sprite.texture = load("res://assets/character_0001.png")
+		1:
+			deadPlayerInstance.sprite.texture = load("res://assets/player_doublejump_1.png")
+		2:
+			deadPlayerInstance.sprite.texture = load("res://assets/player_skates_1.png")
+		3:
+			deadPlayerInstance.sprite.texture = load("res://assets/player_iron_1.png")
+				
+	deadPlayerInstance.z_index = 1
+	add_child(deadPlayerInstance)
 	
 
 #Makes sure next level exists before starting it
@@ -59,6 +87,7 @@ func player_death():
 		get_node("/root/Platformer/Player").inputEnabled = false
 		get_node("/root/Platformer/Player").deathSound.play()
 		get_node("/root/Platformer/Player").isAlive = false
+		createDeadPlayer()
 		await get_tree().create_timer(2).timeout
 		change_scene(nextLevel, true)
 		

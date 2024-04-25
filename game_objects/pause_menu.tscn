@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://5qqlp3rikl5g"]
+[gd_scene load_steps=8 format=3 uid="uid://5qqlp3rikl5g"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_isi2c"]
 [ext_resource type="Texture2D" uid="uid://jl8nj358snu4" path="res://assets/gui/title_rect.png" id="1_ix32j"]
 [ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="3_kkaob"]
+[ext_resource type="AudioStream" uid="uid://dhubil67w5nmo" path="res://assets/sounds/pause.ogg" id="4_0djxf"]
+[ext_resource type="AudioStream" uid="uid://cjjovp2ciq5ot" path="res://assets/sounds/coin.ogg" id="5_udyiv"]
+[ext_resource type="AudioStream" uid="uid://detxj55rn0wxr" path="res://assets/sounds/hit.ogg" id="6_wj3jx"]
+[ext_resource type="AudioStream" uid="uid://djiatylq2t2bw" path="res://assets/sounds/powerup.ogg" id="7_7x5sq"]
 
-[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("main", "effects", "effectsBtn", "hubBtn", "normalBtn", "jumpBtn", "skatesBtn", "ironBtn")]
+[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("main", "effects", "effectsBtn", "hubBtn", "normalBtn", "jumpBtn", "skatesBtn", "ironBtn", "pauseSound", "selectSound", "backSound", "powerupSound")]
 visible = false
 script = ExtResource("1_isi2c")
 main = NodePath("Control/Main")
@@ -15,6 +19,10 @@ normalBtn = NodePath("Control/Effects/VBoxContainer/NormalBtn")
 jumpBtn = NodePath("Control/Effects/VBoxContainer/JumpBtn")
 skatesBtn = NodePath("Control/Effects/VBoxContainer/SkatesBtn")
 ironBtn = NodePath("Control/Effects/VBoxContainer/IronBtn")
+pauseSound = NodePath("PauseSound")
+selectSound = NodePath("SelectSound")
+backSound = NodePath("BackSound")
+powerupSound = NodePath("PowerupSound")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -159,6 +167,18 @@ offset_bottom = 41.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("3_kkaob")
 text = "X"
+
+[node name="PauseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0djxf")
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_udyiv")
+
+[node name="BackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_wj3jx")
+
+[node name="PowerupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7x5sq")
 
 [connection signal="pressed" from="Control/Main/VBoxContainer/EffectsBtn" to="." method="_on_effects_btn_pressed"]
 [connection signal="pressed" from="Control/Main/VBoxContainer/HubBtn" to="." method="_on_hub_btn_pressed"]

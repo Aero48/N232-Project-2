@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://8uwtqakntuyf"]
+[gd_scene load_steps=10 format=3 uid="uid://8uwtqakntuyf"]
 
 [ext_resource type="Texture2D" uid="uid://d0gq301a5tg7d" path="res://assets/effect_iron.png" id="1_4kqlo"]
 [ext_resource type="Script" path="res://scripts/effect.gd" id="1_476it"]
 [ext_resource type="Script" path="res://scripts/effect_message.gd" id="3_lpwfx"]
 [ext_resource type="Texture2D" uid="uid://jl8nj358snu4" path="res://assets/gui/title_rect.png" id="4_by5yf"]
 [ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="5_ck05t"]
+[ext_resource type="AudioStream" uid="uid://bl6rr6skldwx" path="res://assets/sounds/level_win.ogg" id="6_4nmo4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqnnq"]
 
@@ -29,10 +30,11 @@ _data = {
 "effect_hover": SubResource("Animation_mwp1k")
 }
 
-[node name="Area2D" type="Area2D" node_paths=PackedStringArray("spriteNode", "effectMessage")]
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("spriteNode", "effectMessage", "collectSound")]
 script = ExtResource("1_476it")
 spriteNode = NodePath("Sprite2D")
 effectMessage = NodePath("EffectMessage")
+collectSound = NodePath("CollectSound")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dqnnq")
@@ -47,11 +49,12 @@ libraries = {
 }
 autoplay = "effect_hover"
 
-[node name="EffectMessage" type="CanvasLayer" parent="." node_paths=PackedStringArray("backBtn", "effectBase")]
+[node name="EffectMessage" type="CanvasLayer" parent="." node_paths=PackedStringArray("backBtn", "effectBase", "messageLabel")]
 visible = false
 script = ExtResource("3_lpwfx")
 backBtn = NodePath("Control/Main/BackBtn")
 effectBase = NodePath("..")
+messageLabel = NodePath("Control/Main/Label")
 
 [node name="Control" type="Control" parent="EffectMessage"]
 layout_mode = 3
@@ -110,6 +113,9 @@ theme_override_fonts/font = ExtResource("5_ck05t")
 theme_override_font_sizes/font_size = 24
 text = "You have collected a new effect! Pause the game to select it."
 autowrap_mode = 2
+
+[node name="CollectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_4nmo4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="pressed" from="EffectMessage/Control/Main/BackBtn" to="EffectMessage" method="_on_back_btn_pressed"]

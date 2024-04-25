@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2q7umkvj23vn"]
+
+[ext_resource type="Texture2D" uid="uid://bv7iu6u3rso52" path="res://assets/star.png" id="1_h3gro"]
+[ext_resource type="Script" path="res://scripts/star.gd" id="2_icby8"]
+
+[sub_resource type="Animation" id="Animation_3a0aj"]
+resource_name = "star"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ap5ap"]
+_data = {
+"star": SubResource("Animation_3a0aj")
+}
+
+[node name="Star" type="Sprite2D" node_paths=PackedStringArray("animation")]
+position = Vector2(0, -30)
+texture = ExtResource("1_h3gro")
+script = ExtResource("2_icby8")
+animation = NodePath("AnimationPlayer")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ap5ap")
+}
+autoplay = "star"

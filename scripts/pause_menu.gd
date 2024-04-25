@@ -11,8 +11,14 @@ extends CanvasLayer
 @export var skatesBtn: Button
 @export var ironBtn: Button
 
+#Sounds
+@export var pauseSound: AudioStreamPlayer
+@export var selectSound: AudioStreamPlayer
+@export var backSound: AudioStreamPlayer
+@export var powerupSound: AudioStreamPlayer
+
 func showMenu():
-	print("showmenu")
+	pauseSound.play()
 	show()
 	main.show()
 	effects.hide()
@@ -24,6 +30,7 @@ func hideMenu():
 	hide()
 
 func _on_effects_btn_pressed():
+	selectSound.play()
 	main.hide()
 	effects.show()
 	if get_node("/root/GameController").playerEffects[1].collected:
@@ -50,32 +57,38 @@ func _on_quit_btn_pressed():
 
 
 func _on_effects_back_btn_pressed():
+	backSound.play()
 	effects.hide()
 	main.show()
 	effectsBtn.grab_focus()
 
 
 func _on_main_back_btn_pressed():
+	backSound.play()
 	get_node("/root/GameController").unPause()
 
 
 func _on_normal_btn_pressed():
-	get_node("/root/Platformer/Player").changeEffect(0)
+	powerupSound.play()
+	get_node("/root/Platformer/Player").changeEffect(0, true)
 	get_node("/root/GameController").unPause()
 
 
 func _on_jump_btn_pressed():
-	get_node("/root/Platformer/Player").changeEffect(1)
+	powerupSound.play()
+	get_node("/root/Platformer/Player").changeEffect(1, true)
 	get_node("/root/GameController").unPause()
 
 
 func _on_skates_btn_pressed():
-	get_node("/root/Platformer/Player").changeEffect(2)
+	powerupSound.play()
+	get_node("/root/Platformer/Player").changeEffect(2, true)
 	get_node("/root/GameController").unPause()
 
 
 func _on_iron_btn_pressed():
-	get_node("/root/Platformer/Player").changeEffect(3)
+	powerupSound.play()
+	get_node("/root/Platformer/Player").changeEffect(3, true)
 	get_node("/root/GameController").unPause()
 
 

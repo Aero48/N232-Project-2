@@ -71,6 +71,8 @@ var doubleJumped = false
 #True when player is within range of doorway (used to prevent screen scrolling)
 var isInDoorway = false
 
+const STAR = preload("res://game_objects/star.tscn")
+
 # Runs when player stops holding the jump button, or starts moving down
 func early_jump_timeout():
 	jumpTimeout = true
@@ -187,12 +189,18 @@ func _physics_process(delta):
 func _on_jump_timer_timeout():
 	jumpTimeout = true
 	
+func createStar():
+	var starInstance = STAR.instantiate()
+	starInstance.z_index = 1
+	add_child(starInstance)
+	
 #When the player changes effect
-func changeEffect(effect):
+func changeEffect(effect, starAnim = false):
 	if get_node("/root/GameController").playerEffects[effect].collected:
 		currentEffect = effect
 		get_node("/root/GameController").currentEffect = effect
-		
+		if starAnim:	
+			createStar()
 		match effect:
 			0:
 				sprite.sprite_frames = load("res://assets/animations/player.tres")

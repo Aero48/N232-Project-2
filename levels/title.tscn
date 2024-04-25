@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://jiyvw37sbhkt"]
+[gd_scene load_steps=9 format=3 uid="uid://jiyvw37sbhkt"]
 
 [ext_resource type="Script" path="res://scripts/title.gd" id="1_iskvm"]
 [ext_resource type="PackedScene" uid="uid://dxobti50tir4t" path="res://game_objects/grass_bg.tscn" id="1_p4si0"]
@@ -6,11 +6,15 @@
 [ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="4_7adol"]
 [ext_resource type="AudioStream" uid="uid://bl6rr6skldwx" path="res://assets/sounds/level_win.ogg" id="5_lyc0l"]
 [ext_resource type="Script" path="res://scripts/title_cam.gd" id="6_gv53r"]
+[ext_resource type="AudioStream" uid="uid://cjjovp2ciq5ot" path="res://assets/sounds/coin.ogg" id="7_yfr51"]
+[ext_resource type="AudioStream" uid="uid://detxj55rn0wxr" path="res://assets/sounds/hit.ogg" id="8_x8gua"]
 
-[node name="Title" type="Node2D" node_paths=PackedStringArray("startTimer", "startSound", "startBtn", "mainMenu", "loadMenu", "file1Btn", "file2Btn", "file3Btn", "file1Label", "file2Label", "file3Label", "deleteFileToggle")]
+[node name="Title" type="Node2D" node_paths=PackedStringArray("startTimer", "startSound", "selectSound", "backSound", "startBtn", "mainMenu", "loadMenu", "file1Btn", "file2Btn", "file3Btn", "file1Label", "file2Label", "file3Label", "deleteFileToggle")]
 script = ExtResource("1_iskvm")
 startTimer = NodePath("StartTimer")
-startSound = NodePath("AudioStreamPlayer")
+startSound = NodePath("StartSound")
+selectSound = NodePath("SelectSound")
+backSound = NodePath("BackSound")
 startBtn = NodePath("CanvasLayer/Main Menu/NinePatchRect/VBoxContainer/StartBtn")
 mainMenu = NodePath("CanvasLayer/Main Menu")
 loadMenu = NodePath("CanvasLayer/Load Menu")
@@ -271,12 +275,18 @@ transform = Transform2D(2, 0, 0, 2, 0, 0)
 
 [node name="StartTimer" type="Timer" parent="."]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="StartSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_lyc0l")
 
 [node name="ScrollCam" type="Camera2D" parent="."]
 position = Vector2(480, 300)
 script = ExtResource("6_gv53r")
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_yfr51")
+
+[node name="BackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_x8gua")
 
 [connection signal="pressed" from="CanvasLayer/Main Menu/NinePatchRect/VBoxContainer/StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main Menu/NinePatchRect/VBoxContainer/LoadBtn" to="." method="_on_load_btn_pressed"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5v4kgfgroy82"]
+
+[ext_resource type="Texture2D" uid="uid://cicdujygmnrya" path="res://assets/character_0001.png" id="1_k7bhn"]
+[ext_resource type="Script" path="res://scripts/dead_player.gd" id="1_vjtlp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5h0o"]
+
+[node name="DeadPlayer" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
+position = Vector2(438, 266)
+collision_layer = 0
+collision_mask = 0
+inertia = 1.0
+script = ExtResource("1_vjtlp")
+sprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k5h0o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_k7bhn")
