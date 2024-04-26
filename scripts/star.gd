@@ -2,7 +2,7 @@ extends Sprite2D
 
 @export var animation: AnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
+#Plays animation then destroys self
 func _ready():
 	await animation.animation_finished
 	queue_free()

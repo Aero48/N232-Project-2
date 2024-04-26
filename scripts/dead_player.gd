@@ -1,3 +1,4 @@
+#Flings the dead player in a slightly randomized direction on death
 extends RigidBody2D
 
 @export var sprite: Sprite2D

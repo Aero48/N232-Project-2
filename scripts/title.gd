@@ -34,18 +34,23 @@ var file3
 
 func _ready():
 	startBtn.grab_focus()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
+#Start a new game
 func startGame():
 	gameStarted = true
 	startSound.play()
 	startTimer.start()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	await startTimer.timeout
 	get_node("/root/GameController").change_scene("1-1", true)
 	
+#Starts game in hub area (When loading from save file)
 func startGameHub():
 	gameStarted = true
 	startSound.play()
 	startTimer.start()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	await startTimer.timeout
 	get_node("/root/GameController").hubVisited = true
 	get_node("/root/GameController").change_scene("tunnel", true, "save_point")
@@ -54,13 +59,12 @@ func _on_start_btn_pressed():
 	if !gameStarted:
 		startGame()
 
-
 func _on_quit_btn_pressed():
 	if !gameStarted:
 		backSound.play()
 		get_tree().quit()
 		
-
+#Returns string with current effect progress pull from save file
 func get_effects_progress(saveFile):
 	var fileEffects = saveFile.effects
 	var count = 0
@@ -69,7 +73,7 @@ func get_effects_progress(saveFile):
 			count+=1
 	return str(count) + "/" + str(fileEffects.size())
 			
-
+#Loads all save files' data
 func initLoadMenu():
 	mainMenu.hide()
 	deleteSaveMode = false
@@ -112,12 +116,15 @@ func _on_back_btn_pressed():
 		loadMenu.hide()
 		startBtn.grab_focus()
 		
+#Starts game from save depending on which file clicked on
 func startFromLoadedFile(fileNum):
+	#If player is in delete mode, delete the save file
 	if deleteSaveMode:
 		backSound.play()
 		var dir = DirAccess.open("user://")
 		dir.remove("save_game_"+str(fileNum)+".txt")
 		initLoadMenu()
+	#Load particular file to game controller and start game from hub
 	else:
 		if !gameStarted:
 			match fileNum:
@@ -139,7 +146,7 @@ func _on_file_2_btn_pressed():
 func _on_file_3_btn_pressed():
 	startFromLoadedFile(3)
 
-
+#Switch between delete and normal mode
 func _on_delete_mode_toggle_pressed():
 	if !gameStarted:
 		deleteSaveMode = !deleteSaveMode

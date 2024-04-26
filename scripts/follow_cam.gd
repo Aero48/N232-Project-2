@@ -2,7 +2,7 @@ extends Camera2D
 var maxOffset = 60
 
 func _ready():
-	#Automatically sets the camera boundaries based on tilemap size. Doesn't work super well honestly
+	#Automatically sets the camera boundaries based on tilemap size.
 	var tilemap = get_parent().tilemap
 	var mapRect = tilemap.get_used_rect()
 	var tileSize = 18

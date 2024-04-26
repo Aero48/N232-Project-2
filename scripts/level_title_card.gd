@@ -6,7 +6,7 @@ extends Node2D
 var nextLevel
 var nextLevelStartPoint
 
-# Called when the node enters the scene tree for the first time.
+#Displays the level queued, then sends the player there
 func _ready():
 	nextLevel = get_node("/root/GameController").nextLevel
 	levelLabel.text = nextLevel

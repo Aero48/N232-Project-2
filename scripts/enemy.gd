@@ -48,7 +48,7 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 func _on_area_2d_body_entered(body):
 	#Ensures body colliding with is a player and visible (checking visibility is a hacky way of determining if the player is dead or not)
 	if body.is_in_group("player") and body.is_visible():
-		#Only squash enemies if moving down
+		#Only squash enemies if moving down, have the iron effect activated, or not have double jump activated
 		if (body.velocity.y>0 or body.currentEffect == 3) and body.currentEffect != 1:
 			queue_free()
 			body.enemySquash() 

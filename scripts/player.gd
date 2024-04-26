@@ -199,6 +199,7 @@ func changeEffect(effect, starAnim = false):
 	if get_node("/root/GameController").playerEffects[effect].collected:
 		currentEffect = effect
 		get_node("/root/GameController").currentEffect = effect
+		#Only creates a star if effect is selected in pause menu
 		if starAnim:	
 			createStar()
 		match effect:
