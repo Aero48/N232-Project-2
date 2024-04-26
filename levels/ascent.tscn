@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://82qcommb0b0u"]
+[gd_scene load_steps=14 format=3 uid="uid://82qcommb0b0u"]
 
 [ext_resource type="TileSet" uid="uid://bfqp6mxmqt3x3" path="res://assets/grass_tileset.tres" id="1_1sbwg"]
 [ext_resource type="PackedScene" uid="uid://c381uru21milu" path="res://game_objects/player.tscn" id="2_lmv64"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dds8g1n1tbviw" path="res://game_objects/start_point.tscn" id="9_np8y4"]
 [ext_resource type="PackedScene" uid="uid://qmyg3rah12im" path="res://game_objects/tall_hills_bg.tscn" id="10_vl33l"]
 [ext_resource type="PackedScene" uid="uid://cagmtgj135uk" path="res://game_objects/warp_door.tscn" id="10_yjiou"]
+[ext_resource type="PackedScene" uid="uid://cmwi7bg15vt7u" path="res://game_objects/enemy.tscn" id="11_2krdr"]
+[ext_resource type="PackedScene" uid="uid://4r0dbgswsvls" path="res://game_objects/spike_enemy.tscn" id="12_0sdu7"]
+[ext_resource type="PackedScene" uid="uid://b2dmea1bub1vy" path="res://game_objects/boundary_wall.tscn" id="13_ogbgb"]
 
 [node name="Platformer" type="Node2D"]
 
@@ -48,3 +51,24 @@ targetStartPoint = "from_ascent"
 targetHasTitleCard = true
 
 [node name="GrassBg" parent="." instance=ExtResource("10_vl33l")]
+
+[node name="Enemy" parent="." instance=ExtResource("11_2krdr")]
+position = Vector2(273, 546)
+
+[node name="Enemy2" parent="." instance=ExtResource("11_2krdr")]
+position = Vector2(400, 168)
+
+[node name="Enemy3" parent="." instance=ExtResource("12_0sdu7")]
+position = Vector2(332, 870)
+
+[node name="BoundaryWall" parent="." instance=ExtResource("13_ogbgb")]
+position = Vector2(-28, 610)
+
+[node name="BoundaryWall2" parent="." instance=ExtResource("13_ogbgb")]
+position = Vector2(-28, -84)
+
+[node name="BoundaryWall3" parent="." instance=ExtResource("13_ogbgb")]
+position = Vector2(532, 608)
+
+[node name="BoundaryWall4" parent="." instance=ExtResource("13_ogbgb")]
+position = Vector2(532, -86)
