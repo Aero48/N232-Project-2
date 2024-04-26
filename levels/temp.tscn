@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://levels/end_of_demo.gd" id="1_5xyk8"]
 [ext_resource type="FontFile" uid="uid://qgkww8kl1ptx" path="res://assets/fonts/upheavtt.ttf" id="1_v3sa8"]
 
-[node name="Temp" type="Node2D"]
+[node name="Temp" type="Node2D" node_paths=PackedStringArray("backBtn")]
 script = ExtResource("1_5xyk8")
+backBtn = NodePath("ColorRect/VBoxContainer/QuitBtn")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 960.0
