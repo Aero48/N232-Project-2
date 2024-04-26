@@ -6,3 +6,5 @@ func _on_body_entered(body):
 		get_node("/root/GameController").player_death()
 	elif body.is_in_group("enemies"):
 		body.queue_free()
+	elif body.is_in_group("acid bubble"):
+		body.queue_free()

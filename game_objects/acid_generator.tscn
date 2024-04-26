@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw7wbrkhael6n"]
+
+[ext_resource type="Script" path="res://scripts/acid_generator.gd" id="1_2k711"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obhb0"]
+
+[node name="AcidGenerator" type="Area2D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_2k711")
+timer = NodePath("Timer")
+velocity = Vector2(0, 60)
+delay = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_obhb0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
